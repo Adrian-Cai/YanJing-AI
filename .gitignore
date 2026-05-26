@@ -1,3 +1,5 @@
+<<<<<<< ours
+<<<<<<< ours
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -199,3 +201,11 @@ db_password.txt
 *_secret.txt
 *.pem
 docs/报错日志.txt
+=======
+__pycache__/
+*.pyc
+>>>>>>> theirs
+=======
+__pycache__/
+*.pyc
+>>>>>>> theirs
