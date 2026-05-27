@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, MotionConfig } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
+
+import { RightHeroVisual } from "./RightHeroVisual";
+
 type IconName =
   | "arrowRight"
   | "briefcase"
@@ -44,18 +45,6 @@ const stats = [
   tone: Tone;
 }>;
 
-const dashboardCards = [
-  { icon: "message", title: "模拟面试", text: "真实场景多轮问答", tone: "blue" },
-  { icon: "file", title: "简历解析", text: "AI 分析简历匹配度", tone: "purple" },
-  { icon: "shield", title: "能力评估", text: "多维度智能评分", tone: "emerald" },
-  { icon: "briefcase", title: "报告生成", text: "个性化改进建议", tone: "orange" },
-] satisfies Array<{
-  icon: IconName;
-  title: string;
-  text: string;
-  tone: Tone;
-}>;
-
 const features = [
   {
     icon: "message",
@@ -94,15 +83,6 @@ const features = [
   tone: Tone;
 }>;
 
-const sidebarItems = [
-  { icon: "home", label: "首页" },
-  { icon: "message", label: "面试练习" },
-  { icon: "file", label: "简历解析" },
-  { icon: "chart", label: "能力报告" },
-  { icon: "briefcase", label: "我的记录" },
-  { icon: "user", label: "个人中心" },
-] satisfies Array<{ icon: IconName; label: string }>;
-
 const toneClasses = {
   amber: "bg-amber-100 text-amber-500",
   blue: "bg-blue-100 text-blue-600",
@@ -110,12 +90,6 @@ const toneClasses = {
   orange: "bg-orange-100 text-orange-500",
   purple: "bg-violet-100 text-violet-500",
 } satisfies Record<Tone, string>;
-
-const heroLayerImages = {
-  orbit: "/images/orbit-lines.svg",
-  frame: "/images/device-frame.png",
-  robot: "/images/robot.png",
-} as const;
 
 export function HomeLanding() {
   return (
@@ -251,238 +225,8 @@ function HeroCopy() {
 
 function HeroMockup() {
   return (
-    <MotionConfig reducedMotion="user">
-      <div
-        className="relative z-10 ml-auto hidden aspect-[1448/1086] w-full max-w-[900px] xl:block xl:-translate-x-8 2xl:-translate-x-0"
-      >
-        <motion.div
-          role="img"
-          aria-label="言镜 AI 面试玻璃显示器分层预览，包含轨道背景、屏幕界面和机器人助手"
-          className="relative h-full w-full isolate select-none"
-          whileHover={{ scale: 1.015 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-        >
-          <HeroVisualBase />
-          <OrbitLayer />
-          <DeviceFrameLayer />
-          <DeviceInterfaceLayer />
-          <FloatingRobotLayer />
-        </motion.div>
-      </div>
-    </MotionConfig>
-  );
-}
-
-function HeroVisualBase() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 select-none">
-      <motion.div
-        className="absolute left-[13%] top-[3%] h-[74%] w-[80%] rounded-full bg-[radial-gradient(circle_at_52%_45%,rgba(88,153,255,0.34)_0%,rgba(170,207,255,0.18)_42%,rgba(255,255,255,0)_72%)] blur-3xl"
-        animate={{ opacity: [0.7, 1, 0.7], scale: [0.985, 1.025, 0.985] }}
-        transition={{ duration: 6.4, ease: "easeInOut", repeat: Infinity }}
-      />
-      <div className="absolute bottom-[8%] left-[20%] h-[44px] w-[62%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(50,104,225,0.26)_0%,rgba(106,148,255,0.12)_48%,rgba(255,255,255,0)_74%)] blur-2xl" />
-      <div className="absolute bottom-[13%] left-[34%] h-[18px] w-[42%] rounded-full bg-white/75 blur-xl" />
-    </div>
-  );
-}
-
-function OrbitLayer() {
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="pointer-events-none absolute -left-[4%] -top-[7%] z-0 h-[108%] w-[108%] select-none opacity-50 mix-blend-multiply"
-      animate={{ rotate: [-1.2, 1.8, -1.2], x: [0, 5, 0], y: [0, -5, 0] }}
-      transition={{ duration: 12.5, ease: "easeInOut", repeat: Infinity }}
-      style={{ transformOrigin: "52% 48%" }}
-    >
-      <Image
-        src={heroLayerImages.orbit}
-        alt=""
-        fill
-        unoptimized
-        sizes="(min-width: 1280px) 56vw, 0vw"
-        draggable={false}
-        className="object-contain pointer-events-none select-none"
-      />
-    </motion.div>
-  );
-}
-
-function DeviceFrameLayer() {
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-10 select-none"
-      animate={{ y: [0, -10, 0] }}
-      transition={{ duration: 5.8, ease: "easeInOut", repeat: Infinity }}
-    >
-      <Image
-        src={heroLayerImages.frame}
-        alt=""
-        fill
-        priority
-        sizes="(min-width: 1280px) 52vw, 0vw"
-        className="object-contain pointer-events-none select-none"
-        draggable={false}
-      />
-    </motion.div>
-  );
-}
-
-function DeviceInterfaceLayer() {
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-20 select-none"
-      animate={{ y: [0, -10, 0] }}
-      transition={{ duration: 5.8, ease: "easeInOut", repeat: Infinity }}
-    >
-      <div
-        className="absolute left-[17.1%] top-[10.2%] h-[64%] w-[68%]"
-        style={{
-          transform:
-            "perspective(1400px) rotateY(-7deg) rotateX(3deg) rotateZ(3.1deg)",
-          transformOrigin: "center center",
-        }}
-      >
-        <div className="relative h-full w-full overflow-hidden rounded-[24px] border border-white/70 bg-white/64 p-4 shadow-[0_26px_64px_rgba(74,111,210,0.24)] backdrop-blur-2xl">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(83,148,255,0.2),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.64),rgba(226,237,255,0.3))]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-5 top-3 h-px bg-white/80"
-          />
-          <div className="relative z-10 grid h-full grid-cols-[112px_minmax(0,1fr)] gap-3">
-            <SidebarNav />
-            <div className="min-w-0 space-y-3">
-              <WelcomePanel />
-              <FeatureGrid />
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function FloatingRobotLayer() {
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="pointer-events-none absolute left-[46.5%] top-[7.7%] z-30 aspect-[1448/1086] w-[49%] select-none"
-      animate={{ y: [0, -7, 0] }}
-      transition={{ duration: 4.1, ease: "easeInOut", repeat: Infinity }}
-    >
-      <Image
-        src={heroLayerImages.robot}
-        alt=""
-        fill
-        priority
-        sizes="(min-width: 1280px) 320px, 0vw"
-        className="object-contain pointer-events-none select-none drop-shadow-[0_22px_30px_rgba(42,88,190,0.16)]"
-        draggable={false}
-      />
-    </motion.div>
-  );
-}
-
-function SidebarNav() {
-  return (
-    <aside className="rounded-[18px] border border-white/40 bg-white/28 p-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.46)] backdrop-blur">
-      <div className="mb-5 flex items-center gap-2">
-        <span className="flex h-[28px] w-[28px] items-center justify-center rounded-[9px] bg-[linear-gradient(135deg,#68d7ff,#2e65ff_48%,#8a64ff)] text-white shadow-[0_10px_18px_rgba(45,101,255,0.2)]">
-          <Icon name="message" className="h-3.5 w-3.5" />
-        </span>
-        <span className="leading-none">
-          <span className="block text-[14px] font-black text-[#111827]">
-            言镜
-          </span>
-          <span className="text-[10px] font-bold text-[#506080]">
-            YanJing
-          </span>
-        </span>
-      </div>
-
-      <div className="space-y-1.5">
-        {sidebarItems.map((item, index) => (
-          <div
-            key={item.label}
-            className={`flex h-[30px] items-center gap-1.5 rounded-[10px] px-2.5 text-[11px] font-bold ${
-              index === 0
-                ? "bg-white/90 text-[#1f67ff] shadow-[0_10px_18px_rgba(74,111,220,0.13)]"
-                : "text-[#62708d]"
-            }`}
-          >
-            <span
-              className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[6px] ${
-                index === 0
-                  ? "bg-[#1f67ff] text-white"
-                  : "bg-slate-200/60 text-[#8a96ad]"
-              }`}
-            >
-              <Icon name={item.icon} className="h-3 w-3" />
-            </span>
-            {item.label}
-          </div>
-        ))}
-      </div>
-    </aside>
-  );
-}
-
-function WelcomePanel() {
-  return (
-    <section className="relative h-[150px] overflow-hidden rounded-[20px] border border-white/70 bg-[linear-gradient(120deg,#ffffff_0%,#edf5ff_58%,#d8e8ff_100%)] p-5 shadow-[0_18px_34px_rgba(87,121,210,0.15)]">
-      <div
-        aria-hidden="true"
-        className="absolute right-[-34px] top-[-70px] h-[220px] w-[280px] rounded-full bg-blue-200/50 blur-3xl"
-      />
-      <div className="relative z-10 max-w-[220px]">
-        <span className="inline-flex h-6 items-center rounded-full bg-[#e8f0ff] px-2.5 text-[10px] font-black text-[#2864f0]">
-          AI Interview
-        </span>
-        <h2 className="mt-3 text-[21px] font-black leading-[1.16] text-[#111b3b]">
-          今日练习
-        </h2>
-        <p className="mt-1.5 max-w-[210px] text-[12px] font-semibold leading-[1.5] text-[#52617f]">
-          选择岗位，开始一轮模拟问答。
-        </p>
-        <span className="mt-4 inline-flex h-8 items-center justify-center rounded-[9px] bg-[#176bff] px-5 text-[12px] font-bold text-white shadow-[0_12px_22px_rgba(37,99,235,0.24)]">
-          开始
-        </span>
-      </div>
-    </section>
-  );
-}
-
-function FeatureGrid() {
-  return (
-    <div className="grid grid-cols-2 gap-2.5">
-      {dashboardCards.map((card) => (
-        <article
-          key={card.title}
-          className="h-[82px] rounded-[16px] border border-white/65 bg-white/74 p-3 shadow-[0_14px_28px_rgba(87,121,210,0.12)] backdrop-blur"
-        >
-          <div className="flex h-full flex-col justify-between">
-            <span
-              className={`flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[11px] ${toneClasses[card.tone]}`}
-            >
-              <Icon name={card.icon} className="h-[17px] w-[17px]" />
-            </span>
-            <div className="min-w-0">
-              <h3 className="text-[13px] font-black leading-tight text-[#111b3b]">
-                {card.title}
-              </h3>
-              <p className="mt-0.5 text-[10px] font-semibold leading-[1.35] text-[#67748f]">
-                {card.text}
-              </p>
-            </div>
-          </div>
-        </article>
-      ))}
+    <div className="relative z-10 ml-auto hidden w-full max-w-[900px] xl:block xl:-translate-x-8 2xl:-translate-x-0">
+      <RightHeroVisual />
     </div>
   );
 }
