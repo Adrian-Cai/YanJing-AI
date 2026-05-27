@@ -3,8 +3,6 @@
 import { motion, MotionConfig } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
-
 type IconName =
   | "arrowRight"
   | "briefcase"
@@ -46,46 +44,16 @@ const stats = [
   tone: Tone;
 }>;
 
-const stackCards = [
-  {
-    icon: "message",
-    title: "模拟面试",
-    text: "真实场景多轮问答",
-    meta: "12 题待练",
-    tone: "blue",
-    className: "left-[46px] top-[212px] z-30 h-[134px] w-[310px] -rotate-[5deg]",
-  },
-  {
-    icon: "file",
-    title: "简历解析",
-    text: "AI 分析简历匹配度",
-    meta: "86% 匹配",
-    tone: "purple",
-    className: "right-[70px] top-[224px] z-20 h-[132px] w-[306px] rotate-[3deg]",
-  },
-  {
-    icon: "shield",
-    title: "能力评估",
-    text: "表达、逻辑、应变拆解",
-    meta: "5 维雷达",
-    tone: "emerald",
-    className: "left-[124px] top-[340px] z-40 h-[138px] w-[314px] rotate-[2deg]",
-  },
-  {
-    icon: "briefcase",
-    title: "报告生成",
-    text: "个性化改进建议",
-    meta: "复盘已生成",
-    tone: "orange",
-    className: "right-[28px] top-[346px] z-10 h-[136px] w-[316px] -rotate-[3deg]",
-  },
+const dashboardCards = [
+  { icon: "message", title: "模拟面试", text: "真实场景多轮问答", tone: "blue" },
+  { icon: "file", title: "简历解析", text: "AI 分析简历匹配度", tone: "purple" },
+  { icon: "shield", title: "能力评估", text: "多维度智能评分", tone: "emerald" },
+  { icon: "briefcase", title: "报告生成", text: "个性化改进建议", tone: "orange" },
 ] satisfies Array<{
   icon: IconName;
   title: string;
   text: string;
-  meta: string;
   tone: Tone;
-  className: string;
 }>;
 
 const features = [
@@ -126,6 +94,15 @@ const features = [
   tone: Tone;
 }>;
 
+const sidebarItems = [
+  { icon: "home", label: "首页" },
+  { icon: "message", label: "面试练习" },
+  { icon: "file", label: "简历解析" },
+  { icon: "chart", label: "能力报告" },
+  { icon: "briefcase", label: "我的记录" },
+  { icon: "user", label: "个人中心" },
+] satisfies Array<{ icon: IconName; label: string }>;
+
 const toneClasses = {
   amber: "bg-amber-100 text-amber-500",
   blue: "bg-blue-100 text-blue-600",
@@ -134,20 +111,11 @@ const toneClasses = {
   purple: "bg-violet-100 text-violet-500",
 } satisfies Record<Tone, string>;
 
-const toneBarClasses = {
-  amber: "bg-amber-400",
-  blue: "bg-blue-500",
-  emerald: "bg-emerald-400",
-  orange: "bg-orange-400",
-  purple: "bg-violet-400",
-} satisfies Record<Tone, string>;
-
-const robotImageSrc = "/images/大屏未来机器人.png";
-
-const voiceBars = [
-  16, 22, 14, 24, 18, 30, 26, 38, 44, 31, 24, 36, 28, 20, 26, 17, 31, 22, 14,
-  20, 16, 13,
-];
+const heroLayerImages = {
+  orbit: "/images/orbit-lines.svg",
+  frame: "/images/device-frame.png",
+  robot: "/images/robot.png",
+} as const;
 
 export function HomeLanding() {
   return (
@@ -285,268 +253,237 @@ function HeroMockup() {
   return (
     <MotionConfig reducedMotion="user">
       <div
-        role="img"
-        aria-label="言镜 AI 面试卡片堆叠预览，包含练习入口、功能模块、语音识别、实时评分和能力雷达"
-        className="relative z-10 ml-auto hidden h-[520px] w-[790px] max-w-full xl:block xl:-translate-x-4 2xl:translate-x-2"
+        className="relative z-10 ml-auto hidden aspect-[1448/1086] w-full max-w-[900px] xl:block xl:-translate-x-8 2xl:-translate-x-0"
       >
-        <HeroMockupBackground />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-[-10px] left-[112px] z-0 h-[34px] w-[570px] rounded-full bg-[#7aa2ff]/28 blur-2xl"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute left-[58px] top-[56px] z-10 h-[410px] w-[652px] rounded-[34px] border border-white/45 bg-[#aabfff]/22 shadow-[0_34px_72px_rgba(70,105,205,0.22)] backdrop-blur-xl"
-          style={{
-            transform:
-              "perspective(1100px) rotateY(-8deg) rotateX(4deg) rotateZ(1.5deg)",
-            transformOrigin: "center center",
-          }}
-        />
-
         <motion.div
-          className="absolute left-[38px] top-[18px] z-20 h-[488px] w-[704px]"
-          style={{
-            transform:
-              "perspective(1100px) rotateY(-8deg) rotateX(4deg) rotateZ(1.4deg)",
-            transformOrigin: "center center",
-          }}
+          role="img"
+          aria-label="言镜 AI 面试玻璃显示器分层预览，包含轨道背景、屏幕界面和机器人助手"
+          className="relative h-full w-full isolate select-none"
+          whileHover={{ scale: 1.015 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
         >
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-[46px] top-[36px] h-[420px] rounded-[34px] border border-white/65 bg-white/34 shadow-[0_34px_80px_rgba(75,111,210,0.22)] backdrop-blur-2xl"
-          />
-          <PracticeHeroCard />
-          {stackCards.map((card) => (
-            <StackFeatureCard key={card.title} card={card} />
-          ))}
+          <HeroVisualBase />
+          <OrbitLayer />
+          <DeviceFrameLayer />
+          <DeviceInterfaceLayer />
+          <FloatingRobotLayer />
         </motion.div>
-
-        <VoiceFloatingCard />
-        <ScoreFloatingCard />
-        <RadarFloatingCard />
       </div>
     </MotionConfig>
   );
 }
 
-function HeroMockupBackground() {
+function HeroVisualBase() {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-      <div className="absolute right-[-36px] top-[12px] h-[470px] w-[560px] rounded-full bg-sky-200/45 blur-3xl" />
-      <div className="absolute right-[84px] top-[72px] h-[340px] w-[440px] rounded-full bg-white/55 blur-2xl" />
-      <svg
-        className="absolute -right-16 top-0 h-[560px] w-[830px] opacity-75"
-        viewBox="0 0 770 520"
-      >
-        <path
-          d="M52 318C159 177 292 99 451 83c100-10 186 7 258 50"
-          fill="none"
-          stroke="rgba(59,130,246,0.16)"
-          strokeWidth="1.4"
-        />
-        <path
-          d="M4 402C126 241 291 147 499 118c101-14 185-6 252 25"
-          fill="none"
-          stroke="rgba(37,99,235,0.12)"
-          strokeWidth="1.2"
-        />
-        <path
-          d="M164 58c93 21 165 75 217 162 48 80 122 132 222 157"
-          fill="none"
-          stroke="rgba(14,165,233,0.12)"
-          strokeDasharray="9 14"
-          strokeLinecap="round"
-          strokeWidth="1.5"
-        />
-      </svg>
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 select-none">
+      <motion.div
+        className="absolute left-[13%] top-[3%] h-[74%] w-[80%] rounded-full bg-[radial-gradient(circle_at_52%_45%,rgba(88,153,255,0.34)_0%,rgba(170,207,255,0.18)_42%,rgba(255,255,255,0)_72%)] blur-3xl"
+        animate={{ opacity: [0.7, 1, 0.7], scale: [0.985, 1.025, 0.985] }}
+        transition={{ duration: 6.4, ease: "easeInOut", repeat: Infinity }}
+      />
+      <div className="absolute bottom-[8%] left-[20%] h-[44px] w-[62%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(50,104,225,0.26)_0%,rgba(106,148,255,0.12)_48%,rgba(255,255,255,0)_74%)] blur-2xl" />
+      <div className="absolute bottom-[13%] left-[34%] h-[18px] w-[42%] rounded-full bg-white/75 blur-xl" />
     </div>
   );
 }
 
-function PracticeHeroCard() {
+function OrbitLayer() {
   return (
     <motion.div
-      className="absolute left-[122px] top-[34px] z-50 h-[190px] w-[492px] overflow-hidden rounded-[26px] border border-white/75 bg-[linear-gradient(120deg,#ffffff_0%,#eef5ff_56%,#d9e8ff_100%)] p-7 shadow-[0_24px_52px_rgba(67,101,190,0.22)] backdrop-blur-2xl"
-      whileHover={{
-        y: -6,
-        rotate: -0.8,
-        boxShadow: "0 30px 64px rgba(59, 92, 170, 0.25)",
-      }}
-      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+      aria-hidden="true"
+      className="pointer-events-none absolute -left-[4%] -top-[7%] z-0 h-[108%] w-[108%] select-none opacity-50 mix-blend-multiply"
+      animate={{ rotate: [-1.2, 1.8, -1.2], x: [0, 5, 0], y: [0, -5, 0] }}
+      transition={{ duration: 12.5, ease: "easeInOut", repeat: Infinity }}
+      style={{ transformOrigin: "52% 48%" }}
+    >
+      <Image
+        src={heroLayerImages.orbit}
+        alt=""
+        fill
+        unoptimized
+        sizes="(min-width: 1280px) 56vw, 0vw"
+        draggable={false}
+        className="object-contain pointer-events-none select-none"
+      />
+    </motion.div>
+  );
+}
+
+function DeviceFrameLayer() {
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-10 select-none"
+      animate={{ y: [0, -10, 0] }}
+      transition={{ duration: 5.8, ease: "easeInOut", repeat: Infinity }}
+    >
+      <Image
+        src={heroLayerImages.frame}
+        alt=""
+        fill
+        priority
+        sizes="(min-width: 1280px) 52vw, 0vw"
+        className="object-contain pointer-events-none select-none"
+        draggable={false}
+      />
+    </motion.div>
+  );
+}
+
+function DeviceInterfaceLayer() {
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-20 select-none"
+      animate={{ y: [0, -10, 0] }}
+      transition={{ duration: 5.8, ease: "easeInOut", repeat: Infinity }}
     >
       <div
-        aria-hidden="true"
-        className="absolute right-[-72px] top-[-96px] h-[280px] w-[330px] rounded-full bg-blue-200/55 blur-3xl"
+        className="absolute left-[17.1%] top-[10.2%] h-[64%] w-[68%]"
+        style={{
+          transform:
+            "perspective(1400px) rotateY(-7deg) rotateX(3deg) rotateZ(3.1deg)",
+          transformOrigin: "center center",
+        }}
+      >
+        <div className="relative h-full w-full overflow-hidden rounded-[24px] border border-white/70 bg-white/64 p-4 shadow-[0_26px_64px_rgba(74,111,210,0.24)] backdrop-blur-2xl">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_82%_12%,rgba(83,148,255,0.2),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.64),rgba(226,237,255,0.3))]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-5 top-3 h-px bg-white/80"
+          />
+          <div className="relative z-10 grid h-full grid-cols-[112px_minmax(0,1fr)] gap-3">
+            <SidebarNav />
+            <div className="min-w-0 space-y-3">
+              <WelcomePanel />
+              <FeatureGrid />
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function FloatingRobotLayer() {
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none absolute left-[46.5%] top-[7.7%] z-30 aspect-[1448/1086] w-[49%] select-none"
+      animate={{ y: [0, -7, 0] }}
+      transition={{ duration: 4.1, ease: "easeInOut", repeat: Infinity }}
+    >
+      <Image
+        src={heroLayerImages.robot}
+        alt=""
+        fill
+        priority
+        sizes="(min-width: 1280px) 320px, 0vw"
+        className="object-contain pointer-events-none select-none drop-shadow-[0_22px_30px_rgba(42,88,190,0.16)]"
+        draggable={false}
       />
-      <div className="relative z-10 max-w-[270px]">
-        <span className="inline-flex h-7 items-center rounded-full bg-[#e8f0ff] px-3 text-[11px] font-black text-[#2864f0]">
+    </motion.div>
+  );
+}
+
+function SidebarNav() {
+  return (
+    <aside className="rounded-[18px] border border-white/40 bg-white/28 p-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.46)] backdrop-blur">
+      <div className="mb-5 flex items-center gap-2">
+        <span className="flex h-[28px] w-[28px] items-center justify-center rounded-[9px] bg-[linear-gradient(135deg,#68d7ff,#2e65ff_48%,#8a64ff)] text-white shadow-[0_10px_18px_rgba(45,101,255,0.2)]">
+          <Icon name="message" className="h-3.5 w-3.5" />
+        </span>
+        <span className="leading-none">
+          <span className="block text-[14px] font-black text-[#111827]">
+            言镜
+          </span>
+          <span className="text-[10px] font-bold text-[#506080]">
+            YanJing
+          </span>
+        </span>
+      </div>
+
+      <div className="space-y-1.5">
+        {sidebarItems.map((item, index) => (
+          <div
+            key={item.label}
+            className={`flex h-[30px] items-center gap-1.5 rounded-[10px] px-2.5 text-[11px] font-bold ${
+              index === 0
+                ? "bg-white/90 text-[#1f67ff] shadow-[0_10px_18px_rgba(74,111,220,0.13)]"
+                : "text-[#62708d]"
+            }`}
+          >
+            <span
+              className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-[6px] ${
+                index === 0
+                  ? "bg-[#1f67ff] text-white"
+                  : "bg-slate-200/60 text-[#8a96ad]"
+              }`}
+            >
+              <Icon name={item.icon} className="h-3 w-3" />
+            </span>
+            {item.label}
+          </div>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function WelcomePanel() {
+  return (
+    <section className="relative h-[150px] overflow-hidden rounded-[20px] border border-white/70 bg-[linear-gradient(120deg,#ffffff_0%,#edf5ff_58%,#d8e8ff_100%)] p-5 shadow-[0_18px_34px_rgba(87,121,210,0.15)]">
+      <div
+        aria-hidden="true"
+        className="absolute right-[-34px] top-[-70px] h-[220px] w-[280px] rounded-full bg-blue-200/50 blur-3xl"
+      />
+      <div className="relative z-10 max-w-[220px]">
+        <span className="inline-flex h-6 items-center rounded-full bg-[#e8f0ff] px-2.5 text-[10px] font-black text-[#2864f0]">
           AI Interview
         </span>
-        <p className="mt-4 text-[25px] font-black leading-[1.15] text-[#111b3b]">
+        <h2 className="mt-3 text-[21px] font-black leading-[1.16] text-[#111b3b]">
           今日练习
-        </p>
-        <p className="mt-2 max-w-[230px] text-[13px] font-semibold leading-[1.55] text-[#52617f]">
+        </h2>
+        <p className="mt-1.5 max-w-[210px] text-[12px] font-semibold leading-[1.5] text-[#52617f]">
           选择岗位，开始一轮模拟问答。
         </p>
-        <span className="mt-5 inline-flex h-10 items-center justify-center rounded-[10px] bg-[#176bff] px-6 text-[14px] font-bold text-white shadow-[0_12px_22px_rgba(37,99,235,0.28)]">
+        <span className="mt-4 inline-flex h-8 items-center justify-center rounded-[9px] bg-[#176bff] px-5 text-[12px] font-bold text-white shadow-[0_12px_22px_rgba(37,99,235,0.24)]">
           开始
         </span>
       </div>
-      <RobotImage
-        className="absolute -right-[2px] -top-[24px] z-20 h-[220px] w-[202px]"
-        sizes="202px"
-      />
-    </motion.div>
+    </section>
   );
 }
 
-function StackFeatureCard({ card }: { card: (typeof stackCards)[number] }) {
+function FeatureGrid() {
   return (
-    <motion.article
-      className={`absolute rounded-[22px] border border-white/70 bg-white/72 p-5 shadow-[0_22px_46px_rgba(72,106,180,0.17)] backdrop-blur-xl ${card.className}`}
-      whileHover={{
-        y: -8,
-        rotate: 0,
-        scale: 1.018,
-        boxShadow: "0 28px 58px rgba(59, 92, 170, 0.24)",
-      }}
-      transition={{ type: "spring", stiffness: 270, damping: 21 }}
-    >
-      <div className="flex h-full flex-col justify-between">
-        <div className="flex items-start justify-between gap-4">
-          <span
-            className={`flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[14px] ${toneClasses[card.tone]}`}
-          >
-            <Icon name={card.icon} className="h-[22px] w-[22px]" />
-          </span>
-          <span className="rounded-full bg-slate-100/80 px-3 py-1 text-[11px] font-black text-[#506080]">
-            {card.meta}
-          </span>
-        </div>
-        <div className="min-w-0">
-          <h3 className="text-[17px] font-black leading-tight text-[#111b3b]">
-            {card.title}
-          </h3>
-          <p className="mt-1 text-[12px] font-semibold leading-[1.45] text-[#67748f]">
-            {card.text}
-          </p>
-          <span className="mt-4 block h-[5px] w-[104px] overflow-hidden rounded-full bg-slate-200/65">
+    <div className="grid grid-cols-2 gap-2.5">
+      {dashboardCards.map((card) => (
+        <article
+          key={card.title}
+          className="h-[82px] rounded-[16px] border border-white/65 bg-white/74 p-3 shadow-[0_14px_28px_rgba(87,121,210,0.12)] backdrop-blur"
+        >
+          <div className="flex h-full flex-col justify-between">
             <span
-              className={`block h-full w-3/4 rounded-full ${toneBarClasses[card.tone]}`}
-            />
-          </span>
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
-function RobotImage({
-  className,
-  sizes,
-}: {
-  className: string;
-  sizes: string;
-}) {
-  return (
-    <div className={`pointer-events-none select-none drop-shadow-[0_22px_28px_rgba(42,88,190,0.22)] ${className}`}>
-      <Image
-        src={robotImageSrc}
-        alt="言镜 AI 面试机器人"
-        fill
-        priority
-        sizes={sizes}
-        className="object-contain"
-        draggable={false}
-      />
+              className={`flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-[11px] ${toneClasses[card.tone]}`}
+            >
+              <Icon name={card.icon} className="h-[17px] w-[17px]" />
+            </span>
+            <div className="min-w-0">
+              <h3 className="text-[13px] font-black leading-tight text-[#111b3b]">
+                {card.title}
+              </h3>
+              <p className="mt-0.5 text-[10px] font-semibold leading-[1.35] text-[#67748f]">
+                {card.text}
+              </p>
+            </div>
+          </div>
+        </article>
+      ))}
     </div>
-  );
-}
-
-function ScoreFloatingCard() {
-  return (
-    <FloatingCard
-      ariaLabel="AI 实时反馈卡片"
-      className="right-[6px] top-[54px] z-[60] h-[108px] w-[136px] p-[15px]"
-    >
-      <p className="text-[12px] font-black text-[#101b3c]">AI 实时反馈</p>
-      <p className="mt-[10px] text-[26px] font-black leading-none text-[#55c4ae]">
-        97<span className="ml-1 text-[14px]">分</span>
-      </p>
-      <p className="mt-2 text-[10px] font-semibold text-[#4a5874]">
-        综合表现：优秀
-      </p>
-    </FloatingCard>
-  );
-}
-
-function VoiceFloatingCard() {
-  return (
-    <FloatingCard
-      ariaLabel="语音识别中卡片"
-      className="bottom-[54px] left-[4px] z-[60] h-[84px] w-[174px] p-[14px]"
-    >
-      <p className="text-[12px] font-black text-[#101b3c]">语音识别中...</p>
-      <div className="mt-[12px] flex h-[28px] items-center gap-[2px]">
-        {voiceBars.map((height, index) => (
-          <motion.span
-            key={`${height}-${index}`}
-            className="w-[2px] rounded-full bg-[linear-gradient(180deg,#8db6ff,#2667ff)]"
-            animate={{ scaleY: [0.62, 1.18, 0.78] }}
-            transition={{
-              delay: index * 0.035,
-              duration: 0.78,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "mirror",
-            }}
-            style={{
-              height: height * 0.75,
-              opacity: 0.32 + (index % 5) * 0.12,
-              transformOrigin: "center",
-            }}
-          />
-        ))}
-      </div>
-    </FloatingCard>
-  );
-}
-
-function RadarFloatingCard() {
-  return (
-    <FloatingCard
-      ariaLabel="能力维度分析卡片"
-      className="bottom-[10px] right-[18px] z-[60] h-[150px] w-[164px] p-[13px]"
-    >
-      <p className="text-[12px] font-black text-[#101b3c]">能力维度分析</p>
-      <RadarChart />
-    </FloatingCard>
-  );
-}
-
-function FloatingCard({
-  ariaLabel,
-  children,
-  className,
-}: {
-  ariaLabel: string;
-  children: ReactNode;
-  className: string;
-}) {
-  return (
-    <motion.div
-      aria-label={ariaLabel}
-      className={`absolute rounded-[18px] border border-white/70 bg-white/78 shadow-[0_18px_36px_rgba(76,111,190,0.17)] backdrop-blur-xl ${className}`}
-      whileHover={{
-        y: -5,
-        scale: 1.025,
-        boxShadow: "0 24px 48px rgba(59, 92, 170, 0.22)",
-      }}
-      transition={{ type: "spring", stiffness: 270, damping: 20 }}
-    >
-      {children}
-    </motion.div>
   );
 }
 
@@ -630,52 +567,6 @@ function HeroBackground() {
       <div className="absolute left-[45%] top-[260px] h-[150px] w-[92px] -rotate-[35deg] rounded-[30px] bg-white/28 blur-[2px]" />
       <div className="absolute bottom-[34px] right-[290px] h-[42px] w-[42px] rounded-full bg-white/55 shadow-[0_0_34px_rgba(255,255,255,0.85)]" />
     </div>
-  );
-}
-
-function RadarChart() {
-  return (
-    <svg className="mt-[6px] h-[96px] w-full" viewBox="0 0 190 140" aria-hidden="true">
-      <g fill="none" stroke="#dbeafe" strokeWidth="1">
-        <polygon points="95,11 158,48 135,119 55,119 32,48" />
-        <polygon points="95,32 136,56 121,101 69,101 54,56" />
-        <polygon points="95,53 114,64 107,84 83,84 76,64" />
-        <line x1="95" y1="11" x2="95" y2="119" />
-        <line x1="158" y1="48" x2="55" y2="119" />
-        <line x1="135" y1="119" x2="32" y2="48" />
-        <line x1="55" y1="119" x2="158" y2="48" />
-        <line x1="32" y1="48" x2="135" y2="119" />
-      </g>
-      <polygon
-        points="95,28 135,57 116,99 68,103 55,63"
-        fill="#3b82f6"
-        fillOpacity="0.22"
-        stroke="#2563eb"
-        strokeWidth="2"
-      />
-      <g fill="#2563eb">
-        <circle cx="95" cy="28" r="3" />
-        <circle cx="135" cy="57" r="3" />
-        <circle cx="116" cy="99" r="3" />
-        <circle cx="68" cy="103" r="3" />
-        <circle cx="55" cy="63" r="3" />
-      </g>
-      <text x="95" y="9" textAnchor="middle" className="fill-[#53617e] text-[9px] font-semibold">
-        表达能力
-      </text>
-      <text x="164" y="50" className="fill-[#53617e] text-[9px] font-semibold">
-        逻辑思维
-      </text>
-      <text x="123" y="134" className="fill-[#53617e] text-[9px] font-semibold">
-        专业知识
-      </text>
-      <text x="29" y="134" className="fill-[#53617e] text-[9px] font-semibold">
-        应变能力
-      </text>
-      <text x="0" y="50" className="fill-[#53617e] text-[9px] font-semibold">
-        应变能力
-      </text>
-    </svg>
   );
 }
 

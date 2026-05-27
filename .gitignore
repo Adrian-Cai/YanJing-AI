@@ -167,6 +167,14 @@ Thumbs.db
 # Custom
 deepseek_*
 test_crypto.py
+output/
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Root-level screenshots
+/*.png
+/*.jpg
 
 # Project specific
 tmp/
