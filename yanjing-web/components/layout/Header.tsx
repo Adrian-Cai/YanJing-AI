@@ -3,7 +3,6 @@
  * 包含：Logo、主导航菜单、登录/体验按钮
  */
 
-import { AppIcon } from "@/components/ui/Icons";
 import { navItems } from "@/data";
 
 export function Header() {
@@ -12,7 +11,7 @@ export function Header() {
       <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-10 xl:px-12">
         {/* Logo区域 */}
         <div className="flex items-center gap-3">
-          <AppIcon className="h-11 w-11" />
+          <img src="/YanJingLogo.png" alt="言镜 Logo" className="h-11 w-11" />
           <div>
             <p className="text-2xl font-black leading-none tracking-tight text-slate-950">言镜</p>
             <p className="mt-1 text-xs font-bold text-slate-700">YanJing</p>
