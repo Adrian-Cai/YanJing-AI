@@ -32,7 +32,26 @@ export function HeroSection() {
             <br />
             面试陪练教练
           </h1>
-          <div className="ml-[350px] mt-4 h-1 w-36 rounded-full bg-gradient-to-r from-violet-400 to-sky-400" />
+          <svg
+            className="ml-[300px] mt-2 h-4 w-36"
+            viewBox="0 0 144 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="heroArcGradient" x1="8" y1="12" x2="136" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#A855F7" />
+                <stop offset="1" stopColor="#60A5FA" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M8 16 Q72 4 136 16"
+              stroke="url(#heroArcGradient)"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
 
           {/* 副标题描述 */}
           <p className="mt-8 max-w-[600px] text-xl font-medium leading-9 text-slate-600">
