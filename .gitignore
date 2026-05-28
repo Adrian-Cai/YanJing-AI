@@ -9,7 +9,6 @@ dist/
 # Environment
 .env
 .env.local
-.env.example
 
 # IDE
 .vscode/
@@ -32,8 +31,6 @@ docs/superpowers/specs/
 docs/superpowers/plans/
 
 # Old project directories (can be manually removed)
-yanjing-web/
-yanjing-api/
 
 # Screenshots at root level
 /*.png
@@ -41,3 +38,6 @@ yanjing-api/
 
 # Output
 output/
+
+# Java
+yanjing-api-java/target/
