@@ -6,7 +6,7 @@
 import type { MenuItem, FeatureItem, StatItem } from "@/types";
 
 /** 机器人资源图片路径 */
-export const ROBOT_ASSET_SRC = "/robot.png";
+export const ROBOT_ASSET_SRC = "/assets/home/hero-robot.webp";
 
 /** 导航栏菜单项 */
 export const navItems = ["首页", "核心功能", "产品优势", "使用场景", "定价", "关于我们"];

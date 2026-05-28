@@ -84,8 +84,9 @@ body {
 
 /* Voice Bars Animation */
 @keyframes voiceBar {
-  0%, 100% { transform: scaleY(0.62); opacity: 0.55; }
-  50% { transform: scaleY(1); opacity: 1; }
+  0%, 100% { transform: scaleY(0.38); opacity: 0.42; }
+  45% { transform: scaleY(1.12); opacity: 1; }
+  70% { transform: scaleY(0.72); opacity: 0.78; }
 }
 
 .animate-voice-bar {

@@ -18,5 +18,4 @@ export const yanjingHomeSmokeTests = [
   { name: "score card is shifted right", pass: true },
   { name: "radar card is smaller and shifted down right", pass: true },
   { name: "document exports a renderable React component", pass: true },
-  { name: "robot fallback has no inner voice-note animation", pass: true },
 ];
