@@ -1,0 +1,15 @@
+{
+  "name": "yanjing-ai",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\"",
+    "dev:web": "cd yanjing-web && npm run dev",
+    "dev:api": "cd yanjing-api-java && mvn spring-boot:run",
+    "build": "cd yanjing-web && npm run build",
+    "lint": "cd yanjing-web && npm run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
