@@ -1,10 +1,410 @@
-export default function HomePage() {
+'use client';
+
+type IconColor = "blue" | "purple" | "green" | "orange" | "yellow";
+
+type IconName =
+  | "home"
+  | "chat"
+  | "file"
+  | "chart"
+  | "record"
+  | "user"
+  | "message"
+  | "doc"
+  | "shield"
+  | "briefcase"
+  | "users"
+  | "star"
+  | "check"
+  | "lock"
+  | "mic"
+  | "target"
+  | "note";
+
+type MenuItem = { label: string; active?: boolean; icon: IconName };
+type FeatureItem = { title: string; desc: string; color: IconColor; icon: IconName };
+type StatItem = { value: string; label: string; icon: IconName };
+
+const ROBOT_ASSET_SRC = "/robot.png";
+
+const navItems = ["首页", "核心功能", "产品优势", "使用场景", "定价", "关于我们"];
+
+const mockMenus: MenuItem[] = [
+  { label: "首页", active: true, icon: "home" },
+  { label: "面试练习", icon: "chat" },
+  { label: "简历解析", icon: "file" },
+  { label: "能力报告", icon: "chart" },
+  { label: "我的记录", icon: "record" },
+  { label: "个人中心", icon: "user" },
+];
+
+const mockFeatures: FeatureItem[] = [
+  { title: "模拟面试", desc: "真实场景多轮问答", color: "blue", icon: "message" },
+  { title: "简历解析", desc: "AI 分析履历匹配度", color: "purple", icon: "doc" },
+  { title: "能力评估", desc: "多维度智能评分", color: "green", icon: "shield" },
+  { title: "报告生成", desc: "个性化改进建议", color: "orange", icon: "briefcase" },
+];
+
+const stats: StatItem[] = [
+  { value: "10,000+", label: "用户信任使用", icon: "users" },
+  { value: "50,000+", label: "面试练习完成", icon: "star" },
+  { value: "95%+", label: "用户好评率", icon: "check" },
+  { value: "数据安全", label: "多重隐私保护", icon: "lock" },
+];
+
+const advantages: FeatureItem[] = [
+  { title: "真实场景模拟", desc: "覆盖行业高频面试问题，高度还原真实面试体验", color: "blue", icon: "message" },
+  { title: "语音识别与分析", desc: "精准识别回答内容，分析语速、停顿、用词等表现", color: "green", icon: "mic" },
+  { title: "AI 智能评分", desc: "从多个维度全面评分，指出优势与待改进点", color: "purple", icon: "target" },
+  { title: "个性化改进建议", desc: "生成专属提升方案，帮你有针对性地提高", color: "orange", icon: "note" },
+  { title: "隐私安全保障", desc: "数据加密存储，保护个人信息与练习内容", color: "blue", icon: "shield" },
+];
+
+function AppIcon({ className = "" }: { className?: string }) {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-16">
-      <h1 className="text-4xl font-bold">YanJing（言镜）</h1>
-      <p className="mt-4 text-slate-300">
-        Next.js + TypeScript + Tailwind CSS 前端基础框架已就绪。
-      </p>
+    <div className={`flex items-center justify-center rounded-2xl bg-gradient-to-br from-sky-300 to-blue-600 shadow-[0_10px_28px_rgba(37,99,235,0.22)] ${className}`}>
+      <svg viewBox="0 0 24 24" className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7.5 16.5h6.2c3.2 0 5.3-2 5.3-5s-2.1-5-5.3-5H10c-3.1 0-5 1.9-5 4.8v6.1c0 .7.8 1.1 1.4.7l1.1-1.6Z" />
+        <path d="M9 11.5h6" />
+      </svg>
+    </div>
+  );
+}
+
+function IconPath({ type }: { type: IconName }) {
+  switch (type) {
+    case "home":
+      return <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z" />;
+    case "file":
+    case "doc":
+      return <path d="M7 3h7l4 4v14H7V3Zm7 0v5h5M10 13h5m-5 4h5" />;
+    case "chart":
+      return <path d="M5 19V9m7 10V5m7 14v-7" />;
+    case "record":
+      return <path d="M6 6h12v12H6V6Zm3 3h6m-6 4h5" />;
+    case "user":
+      return <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 9a7 7 0 0 1 14 0" />;
+    case "shield":
+      return <path d="M12 22s7-3 7-10V6l-7-3-7 3v6c0 7 7 10 7 10Z" />;
+    case "briefcase":
+      return <path d="M9 7V5h6v2m-10 3h14v9H5v-9Zm0 0V7h14v3" />;
+    case "users":
+      return <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m7-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />;
+    case "star":
+      return <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 16.9 6.6 19.8l1-6.1-4.4-4.3 6.1-.9L12 3Z" />;
+    case "check":
+      return <path d="M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9Zm-13-1 3 3 5-6" />;
+    case "lock":
+      return <path d="M7 11V8a5 5 0 0 1 10 0v3m-11 0h12v10H6V11Z" />;
+    case "mic":
+      return <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm7-3a7 7 0 0 1-14 0m7 7v4" />;
+    case "target":
+      return <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-4a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-3a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />;
+    case "note":
+      return <path d="M7 3h10v18H7V3Zm3 5h4m-4 4h4m-4 4h3" />;
+    case "chat":
+    case "message":
+    default:
+      return <path d="M5 6h14v10H9l-4 4V6Z" />;
+  }
+}
+
+function MiniIcon({ type, color = "blue", className = "" }: { type: IconName; color?: IconColor; className?: string }) {
+  const colorMap: Record<IconColor, string> = {
+    blue: "bg-blue-100 text-blue-600",
+    purple: "bg-violet-100 text-violet-600",
+    green: "bg-emerald-100 text-emerald-600",
+    orange: "bg-orange-100 text-orange-600",
+    yellow: "bg-amber-100 text-amber-500",
+  };
+
+  return (
+    <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${colorMap[color]} ${className}`}>
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <IconPath type={type} />
+      </svg>
+    </div>
+  );
+}
+
+function VoiceBars({ compact = false }: { compact?: boolean }) {
+  const bars = compact ? [12, 18, 24, 16, 30, 26, 20, 15] : [16, 24, 34, 26, 42, 50, 36, 44, 38, 28, 34, 24];
+  return (
+    <div className={`${compact ? "h-8 gap-[4px]" : "h-10 gap-[5px]"} flex items-center`} data-testid="voice-bars">
+      {bars.map((height, index) => (
+        <span key={`${height}-${index}`} className={`${compact ? "w-[3px]" : "w-[4px]"} block rounded-full bg-blue-400/75 animate-voice-bar`} style={{ height, animationDelay: `${index * 70}ms` }} />
+      ))}
+    </div>
+  );
+}
+
+function RobotFallback() {
+  return (
+    <div className="absolute inset-0 flex items-end justify-center" aria-hidden="true">
+      <div className="relative mb-0 h-[176px] w-[214px]">
+        <div className="absolute left-[45px] top-[52px] z-20 h-[50px] w-[72px] -rotate-6 rounded-2xl border border-blue-200/80 bg-white/90 p-2 shadow-[0_10px_24px_rgba(80,120,220,0.18)]">
+          <VoiceBars compact />
+        </div>
+        <div className="absolute left-1/2 top-1 h-[90px] w-[152px] -translate-x-1/2 rounded-[44px] bg-gradient-to-br from-white to-blue-100 shadow-[inset_0_4px_10px_rgba(255,255,255,0.9),0_18px_40px_rgba(59,91,219,0.18)]" />
+        <div className="absolute left-1/2 top-7 h-[50px] w-[106px] -translate-x-1/2 rounded-[24px] bg-slate-900 shadow-inner">
+          <span className="absolute left-7 top-4 h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.9)]" />
+          <span className="absolute right-7 top-4 h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.9)]" />
+          <span className="absolute left-1/2 top-8 h-2 w-8 -translate-x-1/2 rounded-b-full border-b-4 border-cyan-300" />
+        </div>
+        <div className="absolute left-[20px] top-[42px] h-12 w-6 rounded-l-full bg-blue-500" />
+        <div className="absolute right-[20px] top-[42px] h-12 w-6 rounded-r-full bg-blue-500" />
+        <div className="absolute bottom-0 left-1/2 h-[86px] w-[128px] -translate-x-1/2 rounded-t-[44px] bg-gradient-to-br from-white to-blue-100 shadow-[0_18px_35px_rgba(59,91,219,0.16)]">
+          <span className="absolute left-1/2 top-6 h-5 w-5 -translate-x-1/2 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.7)]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RobotAsset() {
+  return (
+    <div className="absolute right-[16px] top-[-22px] h-[192px] w-[252px]" data-testid="robot-asset">
+      <RobotFallback />
+      <img src={ROBOT_ASSET_SRC} alt="AI 面试陪练机器人" className="relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_18px_28px_rgba(59,91,219,0.18)]" onError={(event) => { event.currentTarget.style.display = "none"; }} />
+    </div>
+  );
+}
+
+function RadarChart() {
+  const points = [
+    [102, 38],
+    [136, 60],
+    [126, 100],
+    [76, 104],
+    [64, 62],
+  ];
+
+  return (
+    <svg viewBox="0 0 200 128" className="mt-1 h-[82px] w-full" data-testid="radar-chart">
+      <polygon points="102,16 156,48 137,112 68,112 48,48" fill="none" stroke="#D9E2F7" strokeWidth="1" />
+      <polygon points="102,38 134,57 122,94 84,94 72,57" fill="none" stroke="#D9E2F7" strokeWidth="1" />
+      <polygon points="102,60 115,69 110,82 95,82 90,69" fill="none" stroke="#D9E2F7" strokeWidth="1" />
+      <polygon points="102,38 136,60 126,100 76,104 64,62" fill="rgba(37,99,235,0.20)" stroke="#3569F4" strokeWidth="2.2" />
+      {points.map(([x, y], index) => <circle key={`${x}-${y}-${index}`} cx={x} cy={y} r="2.6" fill="#3569F4" />)}
+      <text x="102" y="10" textAnchor="middle" fontSize="9" fill="#64748B">表达能力</text>
+      <text x="160" y="52" fontSize="9" fill="#64748B">逻辑思维</text>
+      <text x="124" y="124" fontSize="9" fill="#64748B">专业知识</text>
+      <text x="48" y="124" fontSize="9" fill="#64748B">应变能力</text>
+      <text x="10" y="52" fontSize="9" fill="#64748B">抗压能力</text>
+    </svg>
+  );
+}
+
+function DeviceMockup() {
+  return (
+    <div className="relative h-[470px] w-[780px] xl:h-[500px] xl:w-[840px]" data-testid="device-mockup">
+      <div className="absolute -right-28 -top-24 h-[580px] w-[800px] rounded-[50%] border border-white/60 opacity-70" />
+      <div className="absolute right-4 top-8 h-[460px] w-[720px] rounded-[50%] border border-white/45 opacity-60" />
+      <div className="absolute bottom-4 right-20 h-24 w-[560px] rounded-full bg-blue-500/20 blur-3xl" />
+
+      <div className="device-shell absolute left-[18px] top-[38px] h-[390px] w-[710px] xl:h-[420px] xl:w-[760px]">
+        <div className="absolute inset-0 overflow-hidden rounded-[34px] border border-white/75 bg-white/45 shadow-[0_36px_100px_rgba(75,102,210,0.22)] backdrop-blur-2xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-blue-50/25 to-blue-200/25" />
+          <div className="absolute -right-16 -top-20 h-72 w-72 rounded-full bg-blue-300/35 blur-3xl" />
+          <div className="relative grid h-full grid-cols-[150px_1fr] gap-5 p-6">
+            <aside className="relative z-10 rounded-[26px] bg-white/28 p-4" data-testid="mock-sidebar">
+              <div className="mb-7 flex items-center gap-3">
+                <AppIcon className="h-9 w-9 rounded-xl" />
+                <div>
+                  <p className="text-sm font-bold leading-none text-slate-900">言镜</p>
+                  <p className="mt-1 text-[10px] font-semibold text-slate-500">YanJing</p>
+                </div>
+              </div>
+              <div className="space-y-2">
+                {mockMenus.map((item) => (
+                  <div key={item.label} className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold transition ${item.active ? "bg-white text-blue-600 shadow-sm" : "text-slate-500"}`}>
+                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <IconPath type={item.icon} />
+                    </svg>
+                    <span>{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </aside>
+
+            <div className="relative z-10 flex flex-col gap-4 overflow-hidden rounded-[26px]">
+              <div className="relative h-[152px] overflow-hidden rounded-[24px] border border-white/75 bg-white/55 p-6 shadow-[0_18px_45px_rgba(91,116,203,0.12)]" data-testid="welcome-panel">
+                <div className="relative z-10 max-w-[360px]">
+                  <h3 className="text-xl font-bold tracking-tight text-slate-900">你好，今天准备练习什么呢？</h3>
+                  <p className="mt-3 text-sm font-medium text-slate-500">选择岗位，开始新的面试练习吧</p>
+                  <button className="mt-5 rounded-lg bg-blue-600 px-7 py-2.5 text-sm font-bold text-white shadow-[0_12px_24px_rgba(37,99,235,0.25)] transition hover:-translate-y-0.5 hover:bg-blue-700">开始练习</button>
+                </div>
+                <RobotAsset />
+              </div>
+
+              <div className="grid flex-1 grid-cols-2 gap-4" data-testid="feature-grid">
+                {mockFeatures.map((item) => (
+                  <div key={item.title} className="flex items-center gap-4 rounded-[20px] border border-white/70 bg-white/58 p-5 shadow-[0_16px_36px_rgba(91,116,203,0.10)] backdrop-blur-xl">
+                    <MiniIcon type={item.icon} color={item.color} />
+                    <div>
+                      <p className="text-base font-bold text-slate-900">{item.title}</p>
+                      <p className="mt-1 text-xs font-medium text-slate-500">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="floating-card floating-device-card voice-floating-card absolute left-[26px] bottom-[54px] z-30 w-[150px] rounded-[16px] border border-white/75 bg-white/78 px-3 py-2 shadow-[0_18px_46px_rgba(68,93,175,0.16)] backdrop-blur-2xl" data-testid="voice-floating-card">
+        <div className="pointer-events-none absolute inset-[1px] rounded-[15px] bg-gradient-to-br from-white/52 via-white/12 to-blue-100/18" />
+        <div className="relative z-10">
+          <p className="text-[11px] font-bold text-slate-800">语音识别中...</p>
+          <div className="mt-1"><VoiceBars compact /></div>
+        </div>
+      </div>
+
+      <div className="floating-card floating-device-card absolute right-[-8px] top-[44px] z-30 w-[124px] rounded-[18px] border border-white/75 bg-white/78 p-3 shadow-[0_20px_56px_rgba(68,93,175,0.15)] backdrop-blur-2xl" data-testid="score-floating-card">
+        <div className="pointer-events-none absolute inset-[1px] rounded-[17px] bg-gradient-to-br from-white/50 via-white/12 to-blue-100/20" />
+        <div className="relative z-10">
+          <p className="text-[11px] font-bold text-slate-800">AI 实时反馈</p>
+          <p className="mt-2 text-[28px] font-black leading-none text-emerald-500">97<span className="ml-1 text-[11px] font-bold">分</span></p>
+          <p className="mt-1.5 text-[10px] font-semibold text-slate-500">综合表现：<span className="text-slate-900">优秀</span></p>
+        </div>
+      </div>
+
+      <div className="floating-card floating-device-card absolute right-[-18px] bottom-[18px] z-30 w-[164px] rounded-[18px] border border-white/75 bg-white/78 p-3 shadow-[0_20px_58px_rgba(68,93,175,0.16)] backdrop-blur-2xl" data-testid="radar-floating-card">
+        <div className="pointer-events-none absolute inset-[1px] rounded-[17px] bg-gradient-to-br from-white/50 via-white/12 to-blue-100/20" />
+        <div className="relative z-10">
+          <p className="text-[12px] font-bold text-slate-900">能力维度分析</p>
+          <RadarChart />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="absolute left-0 right-0 top-0 z-40" data-testid="site-header">
+      <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-10 xl:px-12">
+        <div className="flex items-center gap-3">
+          <AppIcon className="h-11 w-11" />
+          <div>
+            <p className="text-2xl font-black leading-none tracking-tight text-slate-950">言镜</p>
+            <p className="mt-1 text-xs font-bold text-slate-700">YanJing</p>
+          </div>
+        </div>
+        <nav className="hidden items-center gap-14 text-base font-bold text-slate-900 lg:flex" aria-label="主导航">
+          {navItems.map((item, index) => (
+            <a key={item} href="#" className={`relative py-7 ${index === 0 ? "text-blue-600" : "hover:text-blue-600"}`}>
+              {item}
+              {index === 0 && <span className="absolute bottom-2 left-1/2 h-1 w-9 -translate-x-1/2 rounded-full bg-blue-600" />}
+            </a>
+          ))}
+        </nav>
+        <div className="flex items-center gap-5">
+          <button className="hidden rounded-xl border border-slate-200 bg-white px-8 py-3 text-base font-bold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:block">登录</button>
+          <button className="rounded-xl bg-blue-600 px-9 py-3 text-base font-bold text-white shadow-[0_14px_28px_rgba(37,99,235,0.28)] transition hover:-translate-y-0.5 hover:bg-blue-700">立即体验</button>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function HeroSection() {
+  return (
+    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_82%_18%,#dce8ff_0%,#eef5ff_28%,#ffffff_58%)] pt-24" data-testid="hero-section">
+      <div className="absolute right-[-180px] top-[-140px] h-[740px] w-[940px] rounded-[50%] border border-blue-100/80" />
+      <div className="absolute right-[-120px] top-[80px] h-[520px] w-[900px] rounded-[50%] border border-white/70" />
+      <div className="absolute right-[120px] top-[120px] h-5 w-5 rounded-full bg-white/80 shadow-[0_0_50px_rgba(59,130,246,0.45)]" />
+      <div className="mx-auto grid min-h-[680px] max-w-[1440px] grid-cols-1 items-center gap-8 px-10 pb-10 pt-8 lg:grid-cols-[0.95fr_1.25fr] xl:px-12">
+        <div className="relative z-10 max-w-[640px]">
+          <div className="mb-9 inline-flex items-center gap-2 rounded-full bg-white/70 px-5 py-2 text-base font-bold text-slate-900 shadow-sm backdrop-blur-xl">
+            <span className="text-amber-400">✦</span>
+            <span className="text-blue-600">AI 面试陪练</span>
+            <span>· 让每一次表达都更有底气</span>
+          </div>
+          <h1 className="text-[64px] font-black leading-[1.05] tracking-[-0.055em] text-slate-950 xl:text-[72px]">
+            言镜 · 你的 <span className="bg-gradient-to-r from-blue-600 to-violet-500 bg-clip-text text-transparent">AI</span><br />面试陪练教练
+          </h1>
+          <div className="ml-[350px] mt-4 h-1 w-36 rounded-full bg-gradient-to-r from-violet-400 to-sky-400" />
+          <p className="mt-8 max-w-[600px] text-xl font-medium leading-9 text-slate-600">模拟真实面试场景，AI 实时提问与反馈，帮你发现问题、提升表达、增强自信，走向理想 Offer。</p>
+          <div className="mt-10 flex flex-wrap items-center gap-6">
+            <button className="group rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-10 py-4 text-lg font-bold text-white shadow-[0_18px_40px_rgba(37,99,235,0.32)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.38)]">立即体验面试陪练<span className="ml-3 inline-block transition group-hover:translate-x-1">→</span></button>
+            <button className="rounded-xl border border-slate-200 bg-white/80 px-9 py-4 text-lg font-bold text-slate-900 shadow-sm backdrop-blur-xl transition hover:-translate-y-1 hover:shadow-md"><span className="mr-3 inline-flex h-5 w-5 items-center justify-center rounded-md border-2 border-blue-600 text-xs text-blue-600">▶</span>观看产品演示</button>
+          </div>
+        </div>
+        <div className="relative z-10 hidden justify-end lg:flex"><DeviceMockup /></div>
+      </div>
+      <div className="relative z-20 mx-auto -mt-6 max-w-[1080px] px-10 pb-12 xl:px-12">
+        <div className="grid overflow-hidden rounded-[24px] border border-white/80 bg-white/86 shadow-[0_22px_60px_rgba(15,23,42,0.10)] backdrop-blur-2xl sm:grid-cols-2 lg:grid-cols-4" data-testid="stats-bar">
+          {stats.map((item, index) => (
+            <div key={item.label} className={`flex items-center justify-center gap-5 px-8 py-6 ${index !== 0 ? "lg:border-l lg:border-slate-200" : ""}`}>
+              <MiniIcon type={item.icon} color={index === 1 ? "yellow" : "blue"} />
+              <div>
+                <p className="text-2xl font-black leading-none text-slate-950">{item.value}</p>
+                <p className="mt-2 text-sm font-semibold text-slate-500">{item.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AdvantagesSection() {
+  return (
+    <section className="bg-white px-10 py-14 xl:px-12" data-testid="advantages-section">
+      <div className="mx-auto max-w-[1280px]">
+        <div className="text-center">
+          <h2 className="text-4xl font-black tracking-tight text-slate-950">为什么选择<span className="bg-gradient-to-r from-blue-600 to-violet-500 bg-clip-text text-transparent">言镜?</span></h2>
+          <p className="mt-4 text-lg font-medium text-slate-500">用 AI 技术，让面试准备更高效、更有针对性</p>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          {advantages.map((item) => (
+            <div key={item.title} className="group flex items-center gap-4 rounded-[22px] border border-slate-200 bg-white px-5 py-4 shadow-[0_14px_36px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_56px_rgba(37,99,235,0.14)]">
+              <MiniIcon type={item.icon} color={item.color} />
+              <div>
+                <h3 className="text-base font-black text-slate-950">{item.title}</h3>
+                <p className="mt-0.5 text-sm font-medium leading-5 text-slate-500">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-slate-50 border-t border-slate-200">
+      <div className="mx-auto max-w-[1280px] px-10 py-12 xl:px-12">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+            <AppIcon className="h-9 w-9" />
+            <span className="font-bold text-slate-900">言镜 YanJing</span>
+          </div>
+          <div className="flex gap-6 text-sm text-slate-500">
+            <a href="#" className="hover:text-slate-700 transition-colors">隐私政策</a>
+            <a href="#" className="hover:text-slate-700 transition-colors">服务条款</a>
+            <a href="#" className="hover:text-slate-700 transition-colors">联系我们</a>
+          </div>
+          <div className="text-sm text-slate-400">
+            © 2026 言镜 YanJing. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default function YanJingHomePage() {
+  return (
+    <main className="min-h-screen bg-white text-slate-950">
+      <Header />
+      <HeroSection />
+      <AdvantagesSection />
+      <Footer />
     </main>
   );
 }
