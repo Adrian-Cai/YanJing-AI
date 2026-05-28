@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.next/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Turbo
+.turbo/
+
+# Docs specs (keep tracked)
+docs/superpowers/specs/
+docs/superpowers/plans/
+
+# Old project directories (can be manually removed)
+yanjing-web/
+yanjing-api/
+
+# Screenshots at root level
+/*.png
+/*.jpg
+
+# Output
+output/
