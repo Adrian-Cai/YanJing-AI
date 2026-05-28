@@ -20,8 +20,17 @@ export function HeroSection() {
         {/* 左侧文字内容 */}
         <div className="relative z-10 max-w-[640px]">
           {/* 标签 */}
-          <div className="mb-9 inline-flex items-center gap-2 rounded-full bg-white/70 px-5 py-2 text-base font-bold text-slate-900 shadow-sm backdrop-blur-xl">
-            <span className="text-amber-400">✦</span>
+          <div className="mb-9 inline-flex items-center gap-2.5 rounded-full bg-white/70 px-5 py-2 text-base font-bold text-slate-900 shadow-sm backdrop-blur-xl">
+            <span className="relative inline-flex h-4 w-4 items-center justify-center" aria-hidden="true">
+              <svg viewBox="0 0 20 20" className="h-4 w-4">
+                <path
+                  d="M10 1.8c.5 2.3 1.2 4 2.3 5.1 1.1 1.1 2.8 1.8 5.1 2.3-2.3.5-4 1.2-5.1 2.3-1.1 1.1-1.8 2.8-2.3 5.1-.5-2.3-1.2-4-2.3-5.1-1.1-1.1-2.8-1.8-5.1-2.3 2.3-.5 4-1.2 5.1-2.3 1.1-1.1 1.8-2.8 2.3-5.1Z"
+                  fill="#D8A394"
+                />
+                <circle cx="15.7" cy="4.3" r="2.1" fill="#4F7BFF" />
+                <circle cx="14.7" cy="14.9" r="1.7" fill="#F5C35C" />
+              </svg>
+            </span>
             <span className="text-blue-600">AI 面试陪练</span>
             <span>· 让每一次表达都更有底气</span>
           </div>
@@ -33,21 +42,21 @@ export function HeroSection() {
             面试陪练教练
           </h1>
           <svg
-            className="ml-[300px] mt-2 h-4 w-36"
-            viewBox="0 0 144 24"
+            className="ml-[275px] mt-2 h-5 w-44"
+            viewBox="0 0 180 28"
             fill="none"
             aria-hidden="true"
           >
             <defs>
-              <linearGradient id="heroArcGradient" x1="8" y1="12" x2="136" y2="12" gradientUnits="userSpaceOnUse">
+              <linearGradient id="heroArcGradient" x1="8" y1="14" x2="172" y2="14" gradientUnits="userSpaceOnUse">
                 <stop stopColor="#A855F7" />
                 <stop offset="1" stopColor="#60A5FA" />
               </linearGradient>
             </defs>
             <path
-              d="M8 16 Q72 4 136 16"
+              d="M8 20 Q90 4 172 20"
               stroke="url(#heroArcGradient)"
-              strokeWidth="4.5"
+              strokeWidth="6"
               strokeLinecap="round"
               fill="none"
             />

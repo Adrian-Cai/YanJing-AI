@@ -355,7 +355,7 @@ function HeroSection() {
             言镜 · 你的 <span className="bg-gradient-to-r from-blue-600 to-violet-500 bg-clip-text text-transparent">AI</span><br />面试陪练教练
           </h1>
           <div className="ml-[350px] mt-4 h-1 w-36 rounded-full bg-gradient-to-r from-violet-400 to-sky-400" />
-          <p className="mt-8 max-w-[600px] text-xl font-medium leading-9 text-slate-600">模拟真实面试场景，AI 实时提问与反馈，帮你发现问题、提升表达、增强自信，走向理想 Offer。</p>
+          <p className="mt-8 max-w-[600px] text-xl font-medium leading-9 text-slate-600">模拟真实面试场景，AI 实时提问与反馈，帮你发现问题、提升表达、增强自信，走向理想 Offer</p>
           <div className="mt-10 flex flex-wrap items-center gap-6">
             <button className="group rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-10 py-4 text-lg font-bold text-white shadow-[0_18px_40px_rgba(37,99,235,0.32)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.38)]">立即体验面试陪练<span className="ml-3 inline-block transition group-hover:translate-x-1">→</span></button>
             <button className="rounded-xl border border-slate-200 bg-white/80 px-9 py-4 text-lg font-bold text-slate-900 shadow-sm backdrop-blur-xl transition hover:-translate-y-1 hover:shadow-md"><span className="mr-3 inline-flex h-5 w-5 items-center justify-center rounded-md border-2 border-blue-600 text-xs text-blue-600">▶</span>观看产品演示</button>
