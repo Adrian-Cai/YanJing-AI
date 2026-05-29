@@ -40,12 +40,12 @@ export default function AboutPage() {
 
       <section className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 pb-24 pt-24 lg:grid-cols-[1fr_520px] lg:px-8 lg:pb-28 lg:pt-28">
         <div>
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#dce7ff] bg-white/70 px-3.5 py-1.5 text-xs font-medium text-[#3b63e6] shadow-sm backdrop-blur">
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full bg-white/70 px-5 py-2 text-base font-bold text-slate-900 shadow-sm backdrop-blur-xl">
             <SearchTinyIcon />
             关于言镜
           </div>
 
-          <h1 className="max-w-3xl text-[48px] font-semibold leading-[1.08] tracking-[-0.05em] text-[#0f172a] md:text-[64px]">
+          <h1 className="max-w-3xl text-[64px] font-black leading-[1.05] tracking-[-0.055em] text-slate-950 xl:text-[72px]">
             很多求职者并不
             <br />
             是没有能力，
@@ -58,7 +58,7 @@ export default function AboutPage() {
             </span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-[15px] leading-8 text-slate-600">
+          <p className="mt-8 max-w-xl text-xl font-medium leading-9 text-slate-600">
             简历写满了经历与成果，面试却冷场，回答笼统
             <br />
             让优秀常常被忽略，让真实价值没有被看见
@@ -73,14 +73,14 @@ export default function AboutPage() {
           <div className="absolute left-[34px] top-2 hidden h-[calc(100%-120px)] w-px bg-gradient-to-b from-[#cddcff] via-[#dbe7ff] to-transparent md:block" />
 
           <TimelineItem index="01" title="我们看到的痛点">
-            <p className="max-w-2xl text-[15px] leading-8 text-slate-600">
+            <p className="max-w-2xl text-lg font-medium leading-9 text-slate-600">
               优秀简历无法自动转化为有效表达，真实经历常常被讲得零散、含糊，
               需求与个人经历之间出现深度错位
             </p>
           </TimelineItem>
 
           <TimelineItem index="02" title="言镜：为解决此而生">
-            <p className="max-w-2xl text-[15px] leading-8 text-slate-600">
+            <p className="max-w-2xl text-lg font-medium leading-9 text-slate-600">
               通过结构化 PDF 解析，言镜还原真实面试场景，智能生成个性化追问，
               分析表达漏洞，助你优化表达呈现
             </p>
@@ -98,16 +98,16 @@ export default function AboutPage() {
           </TimelineItem>
 
           <TimelineItem index="03" title="从背诵到表达训练">
-            <p className="max-w-2xl text-[15px] leading-8 text-slate-600">
+            <p className="max-w-2xl text-lg font-medium leading-9 text-slate-600">
               我们不提供标准答案，只帮你完成从「被问」到「说清楚」的跨越
             </p>
 
             <div className="mt-16 flex flex-col items-center gap-7 text-center">
-              <p className="text-4xl font-semibold tracking-[-0.04em] text-slate-300">我做过</p>
+              <p className="text-4xl font-black tracking-[-0.04em] text-slate-300">我做过</p>
               <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#c7d7ff] to-transparent" />
-              <p className="text-4xl font-semibold tracking-[-0.04em] text-[#344766]">我能讲清楚</p>
+              <p className="text-4xl font-black tracking-[-0.04em] text-[#344766]">我能讲清楚</p>
               <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#c7d7ff] to-transparent" />
-              <p className="bg-gradient-to-r from-[#225eed] to-[#8052f4] bg-clip-text text-5xl font-semibold tracking-[-0.05em] text-transparent">
+              <p className="bg-gradient-to-r from-[#225eed] to-[#8052f4] bg-clip-text text-5xl font-black tracking-[-0.05em] text-transparent">
                 面试官愿意相信
               </p>
             </div>
@@ -115,7 +115,7 @@ export default function AboutPage() {
 
           <TimelineItem index="04" title="让每一次准备都回归真实">
             <div className="mt-5 border-l-2 border-[#3d63f2] pl-7">
-              <p className="max-w-xl text-2xl font-medium italic leading-snug tracking-[-0.03em] text-[#334155]">
+              <p className="max-w-xl text-2xl font-black italic leading-snug tracking-[-0.03em] text-[#334155]">
                 让每一次表达都有反馈，让
                 <br />
                 面试准备真正接近实战场景
@@ -132,12 +132,12 @@ export default function AboutPage() {
           <div className="absolute -right-16 -bottom-24 h-56 w-56 rounded-full bg-[#ebe0ff]/70 blur-3xl" />
 
           <div className="relative">
-            <div className="mb-8 flex items-center justify-start gap-2 text-xs font-medium text-slate-400">
+            <div className="mb-8 flex items-center justify-start gap-2 text-base font-bold text-slate-500">
               <SparkTinyIcon />
               言镜 YANJING
             </div>
 
-            <h2 className="text-4xl font-semibold tracking-[-0.05em] text-[#0f172a] md:text-5xl">
+            <h2 className="text-4xl font-black tracking-[-0.055em] text-slate-950 md:text-5xl">
               开始一次
               <span className="bg-gradient-to-r from-[#245eef] to-[#7c4df4] bg-clip-text text-transparent">
                 更真实
@@ -145,7 +145,7 @@ export default function AboutPage() {
               的面试表达训练
             </h2>
 
-            <p className="mt-5 text-sm leading-7 text-slate-500">
+            <p className="mt-5 text-lg font-medium text-slate-500">
               真实模拟 · 深度分析 · 精准提问 · 更接近理想 Offer
             </p>
 
@@ -200,7 +200,7 @@ function TimelineItem({
       </div>
 
       <div className="pt-3">
-        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-slate-950">{title}</h3>
+        <h3 className="text-2xl font-black tracking-[-0.04em] text-slate-950">{title}</h3>
         <div className="mt-5">{children}</div>
       </div>
     </div>
