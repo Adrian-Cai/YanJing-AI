@@ -3,8 +3,6 @@
  * 包含：品牌信息、链接导航、版权信息
  */
 
-import { AppIcon } from "@/components/ui/Icons";
-
 export function Footer() {
   return (
     <footer className="bg-slate-50 border-t border-slate-200">
@@ -12,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* 品牌信息 */}
           <div className="flex items-center gap-3">
-            <AppIcon className="h-9 w-9" />
+            <img src="/YanJing-ico.ico" alt="言镜图标" className="h-9 w-9 rounded-xl object-contain" />
             <span className="font-bold text-slate-900">言镜 YanJing</span>
           </div>
           
