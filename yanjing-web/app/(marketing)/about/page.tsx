@@ -162,45 +162,63 @@ function ResumeDemoCard() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[#e1e9ff] bg-white/60 p-6 shadow-[0_20px_40px_-10px_rgba(99,102,241,0.05)] backdrop-blur-xl">
-      {/* Resume Content */}
-      <header className="mb-4">
-        <h3 className="text-lg font-black text-[#4f46e5]">李华</h3>
-        <div className="mt-1 flex gap-4 text-sm text-slate-500">
-          <span>lihua@email.com</span>
-          <span>138-0000-0000</span>
+    <div className="relative overflow-hidden rounded-card-xl border border-[#e1e9ff] bg-white/58 p-8 shadow-card backdrop-blur-xl">
+      {/* 简历内容 */}
+      <div className="relative z-10">
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-[#4f46e5]">李华</h3>
+          <div className="mt-3 flex gap-5 text-sm text-slate-500">
+            <span>lihua@email.com</span>
+            <span>138-0000-0000</span>
+          </div>
+          <p className="mt-2 text-sm font-medium text-[#4f46e5]">高级产品经理</p>
         </div>
-        <p className="mt-1 text-sm font-semibold text-[#4f46e5]/80">高级产品经理</p>
-      </header>
 
-      <section className="mb-4">
-        <h4 className="text-sm font-black uppercase tracking-wide text-[#4f46e5]">工作经历</h4>
-        <ul className="mt-2 list-disc pl-4 text-sm leading-6 text-slate-600">
-          <li>2023.01 – 2024.03 某科技公司 – 产品经理</li>
-          <li>负责数据分析与问答优化</li>
-          <li>优化内部流程，提高面试成功率</li>
-        </ul>
-      </section>
+        <div className="space-y-6 text-sm leading-7 text-slate-600">
+          <section>
+            <h4 className="mb-2 font-semibold text-[#4f46e5]">工作经历</h4>
+            <ul className="list-disc space-y-1 pl-5">
+              <li>2023.01 – 2024.03 某科技公司 – 产品经理</li>
+              <li>负责数据分析与问答优化</li>
+              <li>优化内部流程，提高面试成功率</li>
+            </ul>
+          </section>
+          <section>
+            <h4 className="mb-2 font-semibold text-[#4f46e5]">项目经历</h4>
+            <ul className="list-disc space-y-1 pl-5">
+              <li>面试智能分析系统 – 数据可视化模块</li>
+              <li>PDF 解析与问题生成工具开发</li>
+            </ul>
+          </section>
+        </div>
 
-      <section>
-        <h4 className="text-sm font-black uppercase tracking-wide text-[#4f46e5]">项目经历</h4>
-        <ul className="mt-2 list-disc pl-4 text-sm leading-6 text-slate-600">
-          <li>面试智能分析系统 – 数据可视化模块</li>
-          <li>PDF 解析与问题生成工具开发</li>
-        </ul>
-      </section>
+        <div className="mt-8 h-1 rounded-full bg-gradient-to-r from-[#93c5fd] via-[#818cf8] to-[#a78bfa]" />
+      </div>
 
-      {/* Vertical scanning line */}
+      {/* 扫描高亮面 */}
       <motion.div
-        className="absolute left-0 right-0 h-[2px] z-10 bg-gradient-to-r from-transparent via-[#4f46e5]/50 to-transparent shadow-[0_0_15px_rgba(79,70,229,0.4)]"
-        animate={reduceMotion ? { y: 0 } : { y: ["-10%", "100%"] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden
+        animate={
+          reduceMotion
+            ? { top: "45%", opacity: 0.18 }
+            : { top: ["-20%", "110%"], opacity: [0, 0.18, 0.22, 0.18, 0] }
+        }
+        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.8 }}
+        className="pointer-events-none absolute left-0 right-0 z-20 h-24 -translate-y-1/2 bg-gradient-to-b from-transparent via-[#dbeafe]/45 to-transparent"
       />
 
-      {/* Bottom gradient glow */}
-      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#4f46e5]/10 to-transparent pointer-events-none" />
+      {/* 扫描线 */}
+      <motion.div
+        aria-hidden
+        animate={reduceMotion ? { top: "45%" } : { top: ["0%", "100%"] }}
+        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.8 }}
+        className="pointer-events-none absolute left-0 right-0 z-30 h-[2px] -translate-y-1/2 bg-gradient-to-r from-transparent via-[#6d5df7]/60 to-transparent shadow-[0_0_16px_rgba(109,93,247,0.38)]"
+      />
 
-      <div className="mt-6 h-1 rounded-full bg-gradient-to-r from-[#93c5fd] via-[#818cf8] to-[#a78bfa]" />
+      {/* 顶部遮罩 */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-40 h-8 bg-gradient-to-b from-white/45 to-transparent" />
+      {/* 底部遮罩 */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-10 bg-gradient-to-t from-white/45 to-transparent" />
     </div>
   );
 }

@@ -4,10 +4,10 @@ server:
 spring:
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb://root:Caijinwei%262026@103.236.97.248:23235/yanjing?authSource=admin}
+      uri: ${MONGODB_URI:mongodb://root:Caijinwei%262026@103.236.97.248:27017/yanjing?authSource=admin}
     redis:
       host: ${REDIS_HOST:103.236.97.248}
-      port: ${REDIS_PORT:23235}
+      port: ${REDIS_PORT:6379}
       username: ${REDIS_USERNAME:}
       password: ${REDIS_PASSWORD:Caijinwei&2026}
 
