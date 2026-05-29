@@ -10,6 +10,36 @@ body {
   @apply bg-white text-slate-950;
 }
 
+/* Focus Visible - 全局焦点样式 */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-brand-500;
+}
+
+button:focus-visible,
+a:focus-visible {
+  @apply outline-2 outline-offset-2 outline-brand-500 rounded-sm;
+}
+
+/* Reduced Motion - 减弱动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .device-shell {
+    transform: none !important;
+  }
+
+  .floating-card:hover {
+    transform: none !important;
+  }
+}
+
 /* Device Mockup 3D Transform */
 .device-shell {
   transform: perspective(1250px) rotateY(-13deg) rotateX(3deg) rotateZ(1.1deg);
@@ -92,4 +122,26 @@ body {
 .animate-voice-bar {
   transform-origin: center;
   animation: voiceBar 1.05s ease-in-out infinite;
+}
+
+/* Status Dot Bounce */
+@keyframes status-bounce-soft {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.12); }
+  50% { transform: scale(0.96); }
+  70% { transform: scale(1.06); }
+}
+
+@keyframes status-ring-soft {
+  0% { transform: scale(0.9); opacity: 0.28; }
+  70% { transform: scale(1.9); opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+.status-dot-bounce {
+  animation: status-bounce-soft 1.8s ease-in-out infinite;
+}
+
+.status-dot-ring {
+  animation: status-ring-soft 1.8s ease-out infinite;
 }

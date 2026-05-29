@@ -4,6 +4,7 @@
  * 包含：侧边栏、欢迎面板、功能卡片、浮动卡片
  */
 
+import Image from "next/image";
 import { MiniIcon, IconPath } from "./Icons";
 import { VoiceBars } from "./VoiceBars";
 import { RobotAsset } from "./Robot";
@@ -31,7 +32,7 @@ export function DeviceMockup() {
             <aside className="relative z-10 rounded-[26px] bg-white/28 p-4" data-testid="mock-sidebar">
               {/* 侧边栏Logo */}
               <div className="mb-7 flex items-center gap-3">
-                <img src="/YanJing-ico.ico" alt="言镜图标" className="h-9 w-9 rounded-xl object-contain" />
+                <Image src="/YanJing-ico.ico" alt="言镜图标" width={36} height={36} className="rounded-xl object-contain" />
                 <div>
                   <p className="text-sm font-bold leading-none text-slate-900">言镜</p>
                   <p className="mt-1 text-[10px] font-semibold text-slate-500">YanJing</p>

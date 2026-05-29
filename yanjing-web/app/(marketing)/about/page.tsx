@@ -1,37 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 import ResumeScanVisual from "@/components/marketing/ResumeScanVisual";
-import ProgressArrow from "@/components/marketing/ProgressArrow";
-
-export const metadata: Metadata = {
-  title: "关于我们 - 言镜 YanJing",
-  description: "言镜 YanJing 是一个温和、可信、专业的 AI 面试陪练产品",
-};
-
-const flowItems = [
-  { label: "PDF 上传", icon: DocumentIcon },
-  { label: "智能识别", icon: ScanIcon },
-  { label: "问题生成", icon: ChatIcon },
-  { label: "面试分析", icon: ChartIcon },
-  { label: "表达优化", icon: SparkIcon },
-];
-
-const insightCards = [
-  {
-    title: "结果颗粒化",
-    desc: "针对面试官关注的专业点与业务点拆解，准确定位高价值表达与待优化表达点",
-    icon: PinIcon,
-  },
-  {
-    title: "表达深度聚焦",
-    desc: "基于回答可考察度，建议每项不超过 2 组，作为高频被追问的表达优化参考",
-    icon: MessageIcon,
-  },
-  {
-    title: "自我评价增强",
-    desc: "阶段性评估与反馈，帮助你回顾亮点，进化表达思路与被看见的底层能力",
-    icon: ShieldIcon,
-  },
-];
+import { BackgroundAtmosphere } from "@/components/marketing/about/BackgroundAtmosphere";
+import { TimelineItem } from "@/components/marketing/about/TimelineItem";
+import { SearchTinyIcon, ArrowRightIcon, SparkTinyIcon, LightbulbIcon, AnalyticsIcon, PsychologyIcon } from "@/components/marketing/about/icons";
 
 export default function AboutPage() {
   return (
@@ -85,14 +59,29 @@ export default function AboutPage() {
               分析表达漏洞，助你优化表达呈现
             </p>
 
-            <FlowStrip />
+            <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:gap-12">
+              {/* Left: Resume Demo with Scanning */}
+              <div className="flex-1">
+                <ResumeDemoCard />
+              </div>
 
-            <div className="mt-12 grid gap-7 lg:grid-cols-[1fr_1fr]">
-              <AnalysisCard />
-              <div className="space-y-5">
-                {insightCards.map((card) => (
-                  <MiniInsightCard key={card.title} {...card} />
-                ))}
+              {/* Right: Analysis Cards */}
+              <div className="flex flex-1 flex-col gap-4">
+                <AnalysisInsightCard
+                  icon={<LightbulbIcon />}
+                  title="关键词优化"
+                  desc="识别到项目描述中缺乏核心技术关键字，建议增加相关协议与架构词汇以通过初筛。"
+                />
+                <AnalysisInsightCard
+                  icon={<AnalyticsIcon />}
+                  title="量化成果数据"
+                  desc="成果描述过于模糊。建议使用 STAR 法则，补充具体提升的百分比或减少的响应时间。"
+                />
+                <AnalysisInsightCard
+                  icon={<PsychologyIcon />}
+                  title="自我评价增强"
+                  desc="AI 建议根据目标岗位突出高并发场景下处理经验，优化面试回答的可信度与条理性。"
+                />
               </div>
             </div>
           </TimelineItem>
@@ -116,9 +105,7 @@ export default function AboutPage() {
           <TimelineItem index="04" title="让每一次准备都回归真实">
             <div className="mt-5 border-l-2 border-[#3d63f2] pl-7">
               <p className="max-w-xl text-2xl font-black italic leading-snug tracking-[-0.03em] text-[#334155]">
-                让每一次表达都有反馈，让
-                <br />
-                面试准备真正接近实战场景
+                让每一次表达都有反馈，让面试准备真正接近实战场景
               </p>
             </div>
           </TimelineItem>
@@ -149,16 +136,19 @@ export default function AboutPage() {
               真实模拟 · 深度分析 · 精准提问 · 更接近理想 Offer
             </p>
 
-            <a
+            <Link
               href="/interview/upload"
               className="mt-9 inline-flex items-center justify-center gap-2 rounded-full border border-[#dbe6ff] bg-white/90 px-8 py-3 text-sm font-medium text-[#3459e6] shadow-[0_14px_34px_rgba(59,130,246,0.14)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(59,130,246,0.2)]"
             >
               立即体验言镜
               <ArrowRightIcon />
-            </a>
+            </Link>
 
             <div className="mt-7 flex items-center justify-end gap-2 text-xs text-slate-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(52,211,153,0.12)]" />
+              <div className="relative h-3.5 w-3.5">
+                <span className="status-dot-ring absolute inset-0 rounded-full bg-emerald-400" />
+                <span className="status-dot-bounce absolute inset-[3px] rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(52,211,153,0.12)]" />
+              </div>
               持续优化中
             </div>
           </div>
@@ -168,162 +158,96 @@ export default function AboutPage() {
   );
 }
 
-function BackgroundAtmosphere() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_8%,rgba(219,234,254,0.85),transparent_28%),radial-gradient(circle_at_76%_12%,rgba(237,233,254,0.72),transparent_30%),linear-gradient(180deg,#f8fbff_0%,#f4f8ff_42%,#eef5ff_100%)]" />
-      <div className="absolute left-[-12%] top-[28%] h-[540px] w-[680px] rounded-full bg-[#e8f0ff]/50 blur-3xl" />
-      <div className="absolute right-[-18%] top-[55%] h-[640px] w-[760px] rounded-full bg-[#efe9ff]/50 blur-3xl" />
-      <div className="absolute bottom-[10%] left-[10%] h-[420px] w-[680px] rounded-full bg-[#e5f5ff]/60 blur-3xl" />
-      <div className="absolute left-0 top-[34%] h-[420px] w-full opacity-[0.26] [background:repeating-radial-gradient(ellipse_at_left,rgba(79,70,229,0.16)_0px,rgba(79,70,229,0.16)_1px,transparent_2px,transparent_12px)]" />
-      <div className="absolute bottom-[11%] right-[-10%] h-[520px] w-[1050px] rotate-[-9deg] opacity-[0.32] [background:repeating-radial-gradient(ellipse_at_center,rgba(59,130,246,0.18)_0px,rgba(59,130,246,0.18)_1px,transparent_2px,transparent_13px)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.75)_0%,transparent_18%,transparent_82%,rgba(255,255,255,0.8)_100%)]" />
-    </div>
-  );
-}
+function ResumeDemoCard() {
+  const reduceMotion = useReducedMotion();
 
-function TimelineItem({
-  index,
-  title,
-  children,
-}: {
-  index: string;
-  title: string;
-  children: React.ReactNode;
-}) {
   return (
-    <div className="relative grid gap-8 pb-24 md:grid-cols-[86px_1fr]">
-      <div className="relative z-10 flex md:justify-center">
-        <div className="grid h-16 w-16 place-items-center rounded-full border border-[#d7e3ff] bg-white/80 text-xl font-semibold text-[#3157e7] shadow-[0_14px_36px_rgba(59,130,246,0.14)] backdrop-blur">
-          {index}
+    <div className="relative overflow-hidden rounded-2xl border border-[#e1e9ff] bg-white/60 p-6 shadow-[0_20px_40px_-10px_rgba(99,102,241,0.05)] backdrop-blur-xl">
+      {/* Horizontal Scanning Beam */}
+      <motion.div
+        className="absolute left-0 right-0 h-[2px] z-10 bg-gradient-to-r from-transparent via-[#4f46e5]/50 to-transparent shadow-[0_0_15px_rgba(79,70,229,0.4)]"
+        animate={reduceMotion ? { x: 0 } : { x: ["-100%", "100%"] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Magnifying Glass */}
+      <motion.div
+        className="pointer-events-none absolute left-0 top-0 z-20 h-24 w-24"
+        animate={
+          reduceMotion
+            ? { x: 0, y: 0 }
+            : { x: ["0%", "70%"], y: ["0%", "35%"] }
+        }
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="relative h-full w-full">
+          <div className="absolute inset-0 rounded-full border-4 border-[#4f46e5] bg-white/10 shadow-[0_0_30px_rgba(79,70,229,0.3)] backdrop-blur-[3px]">
+            <div className="absolute inset-0 rounded-full bg-[#4f46e5]/5" />
+          </div>
+          <SearchLgIcon className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 text-[#4f46e5]" />
+          <div className="absolute left-[72px] top-[72px] h-2.5 w-10 origin-left rotate-45 rounded-full bg-[#4f46e5]" />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="pt-3">
-        <h3 className="text-2xl font-black tracking-[-0.04em] text-slate-950">{title}</h3>
-        <div className="mt-5">{children}</div>
-      </div>
-    </div>
-  );
-}
+      {/* Resume Content */}
+      <header className="mb-4">
+        <h3 className="text-lg font-black text-[#4f46e5]">清衡</h3>
+        <div className="mt-1 flex gap-4 text-sm text-slate-500">
+          <span>qingheng@email.com</span>
+          <span>138-0000-0000</span>
+        </div>
+        <p className="mt-1 text-sm font-semibold text-[#4f46e5]/80">高级产品经理</p>
+      </header>
 
-function FlowStrip() {
-  return (
-    <div className="mt-9 rounded-[28px] border border-[#e1e9ff] bg-white/58 px-8 py-7 shadow-[0_18px_50px_rgba(59,130,246,0.08)] backdrop-blur-xl">
-      <div className="flex items-center justify-between">
-        {flowItems.map((item, index) => {
-          const Icon = item.icon;
-          const isLast = index === flowItems.length - 1;
+      <section className="mb-4">
+        <h4 className="text-sm font-black uppercase tracking-wide text-[#4f46e5]">工作经历</h4>
+        <ul className="mt-2 list-disc pl-4 text-sm leading-6 text-slate-600">
+          <li>2023.01 – 2024.03 某科技公司 – 产品经理</li>
+          <li>负责数据分析与问答优化</li>
+          <li>优化内部流程，提高面试成功率</li>
+        </ul>
+      </section>
 
-          return (
-            <div key={item.label} className="flex items-center">
-              <div className="flex min-w-[96px] flex-col items-center justify-center gap-3 text-center">
-                <Icon
-                  className={
-                    isLast
-                      ? "h-5 w-5 text-[#4f46e5]"
-                      : "h-5 w-5 text-slate-500"
-                  }
-                />
-                <span
-                  className={
-                    isLast
-                      ? "text-sm font-medium text-[#4f46e5]"
-                      : "text-sm text-slate-600"
-                  }
-                >
-                  {item.label}
-                </span>
-              </div>
+      <section>
+        <h4 className="text-sm font-black uppercase tracking-wide text-[#4f46e5]">项目经历</h4>
+        <ul className="mt-2 list-disc pl-4 text-sm leading-6 text-slate-600">
+          <li>面试智能分析系统 – 数据可视化模块</li>
+          <li>PDF 解析与问题生成工具开发</li>
+        </ul>
+      </section>
 
-              {!isLast && <ProgressArrow delay={index * 0.45} />}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function AnalysisCard() {
-  return (
-    <div className="rounded-2xl border border-[#e1e9ff] bg-white/58 p-7 shadow-[0_18px_50px_rgba(59,130,246,0.08)] backdrop-blur-xl">
-      <div className="mb-5 flex items-center gap-2 text-sm font-medium text-slate-500">
-        <DocumentSmallIcon />
-        示例_简历.pdf
-      </div>
-      <h4 className="mb-4 text-sm font-semibold text-[#4f46e5]">言镜解析后，您将获得</h4>
-      <ul className="space-y-3 text-sm leading-6 text-slate-500">
-        <li>结构化的面试问题清单，更贴近岗位场景与核心胜任力维度。</li>
-        <li>深度追问 List，帮助呈现你经验中的关键信息。</li>
-        <li>场景化 STAR 模板和表达建议，减少回答失焦。</li>
-        <li>兼容 JD/CV 双输入，覆盖项目经历与技术栈解析。</li>
-      </ul>
       <div className="mt-6 h-1 rounded-full bg-gradient-to-r from-[#93c5fd] via-[#818cf8] to-[#a78bfa]" />
     </div>
   );
 }
 
-function MiniInsightCard({
+function AnalysisInsightCard({
+  icon,
   title,
   desc,
-  icon: Icon,
 }: {
+  icon: React.ReactNode;
   title: string;
   desc: string;
-  icon: React.ComponentType<{ className?: string }>;
 }) {
   return (
-    <div className="rounded-2xl border border-[#e5ebff] bg-white/72 p-6 shadow-[0_16px_44px_rgba(99,102,241,0.08)] backdrop-blur-xl">
-      <div className="flex gap-4">
-        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#ede9fe] text-[#6d4df2]">
-          <Icon className="h-4 w-4" />
-        </div>
-        <div>
-          <h4 className="font-semibold text-slate-900">{title}</h4>
-          <p className="mt-2 text-sm leading-6 text-slate-500">{desc}</p>
-        </div>
+    <div className="flex gap-4 rounded-xl border border-blue-100 bg-white/72 p-5 shadow-[0_4px_12px_rgba(99,102,241,0.06)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.02]">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ede9fe]">
+        {icon}
+      </div>
+      <div>
+        <h4 className="font-black text-slate-900">{title}</h4>
+        <p className="mt-1 text-sm leading-relaxed text-slate-500">{desc}</p>
       </div>
     </div>
   );
 }
 
-
-/* Icons */
-
-function DocumentIcon({ className = "" }) {
-  return <svg className={`h-5 w-5 ${className}`} viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" strokeWidth="1.6"/><path d="M14 3v5h5M9 13h6M9 17h5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>;
-}
-function ScanIcon({ className = "" }) {
-  return <svg className={`h-5 w-5 ${className}`} viewBox="0 0 24 24" fill="none"><path d="M5 8V5h3M16 5h3v3M19 16v3h-3M8 19H5v-3M8 12h8M12 8v8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>;
-}
-function ChatIcon({ className = "" }) {
-  return <svg className={`h-5 w-5 ${className}`} viewBox="0 0 24 24" fill="none"><path d="M6 17.5 4 21v-4.5A7.5 7.5 0 1 1 6 17.5Z" stroke="currentColor" strokeWidth="1.6"/><path d="M9 11h.01M12 11h.01M15 11h.01" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"/></svg>;
-}
-function ChartIcon({ className = "" }) {
-  return <svg className={`h-5 w-5 ${className}`} viewBox="0 0 24 24" fill="none"><path d="M5 19V5h14v14H5Z" stroke="currentColor" strokeWidth="1.6"/><path d="M9 16v-4M12 16V8M15 16v-6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>;
-}
-function SparkIcon({ className = "" }) {
-  return <svg className={`h-5 w-5 ${className}`} viewBox="0 0 24 24" fill="none"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M7.8 7.8l2.4 2.4M13.8 13.8l2.4 2.4M16.2 7.8l-2.4 2.4M10.2 13.8l-2.4 2.4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round"/></svg>;
-}
-function SearchTinyIcon() {
-  return <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none"><path d="m15.5 15.5 4 4M17 10.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>;
-}
-function ArrowRightIcon() {
-  return <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
-}
-function DocumentSmallIcon() {
-  return <svg className="h-4 w-4 text-rose-400" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" strokeWidth="1.6"/><path d="M14 3v5h5" stroke="currentColor" strokeWidth="1.6"/></svg>;
-}
-function SparkTinyIcon() {
-  return <svg className="h-3.5 w-3.5 text-[#615cf6]" viewBox="0 0 24 24" fill="none"><path d="M12 3v5M12 16v5M3 12h5M16 12h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>;
-}
-function PinIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.2 7-11A7 7 0 0 0 5 10c0 5.8 7 11 7 11Z" stroke="currentColor" strokeWidth="1.8"/><path d="M12 12.5A2.5 2.5 0 1 0 12 7.5a2.5 2.5 0 0 0 0 5Z" stroke="currentColor" strokeWidth="1.8"/></svg>;
-}
-function MessageIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none"><path d="M5 18V6h14v10H8l-3 2Z" stroke="currentColor" strokeWidth="1.8"/><path d="M8 10h8M8 13h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>;
-}
-function ShieldIcon({ className = "" }) {
-  return <svg className={className} viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5c0 5-3.2 8.2-7 10-3.8-1.8-7-5-7-10V6l7-3Z" stroke="currentColor" strokeWidth="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
+function SearchLgIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none">
+      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+      <path d="M16 16l4.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
 }

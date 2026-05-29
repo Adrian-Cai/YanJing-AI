@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 /**
  * 页面底部组件
@@ -12,7 +13,7 @@ export default function MarketingFooter() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* 品牌信息 */}
           <div className="flex items-center gap-3">
-            <img src="/YanJing-ico.ico" alt="言镜图标" className="h-9 w-9 rounded-xl object-contain" />
+            <Image src="/YanJing-ico.ico" alt="言镜图标" width={36} height={36} className="rounded-xl object-contain" />
             <span className="font-bold text-slate-900">言镜 YanJing</span>
           </div>
 

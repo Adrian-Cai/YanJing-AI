@@ -1,8 +1,11 @@
+'use client';
+
 /**
  * 首页Hero区域组件
  * 包含：主标题、副标题、操作按钮、设备展示、统计数据
  */
 
+import Link from "next/link";
 import { MiniIcon } from "@/components/ui/Icons";
 import { DeviceMockup } from "@/components/ui/DeviceMockup";
 import { stats } from "@/data";
@@ -69,14 +72,20 @@ export function HeroSection() {
 
           {/* 操作按钮组 */}
           <div className="mt-10 flex flex-nowrap items-center gap-5">
-            <button className="group shrink-0 whitespace-nowrap rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-10 py-4 text-lg font-bold text-white shadow-[0_18px_40px_rgba(37,99,235,0.32)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(37,99,235,0.38)]">
+            <Link
+              href="/interview/upload"
+              className="group shrink-0 whitespace-nowrap rounded-button bg-accent px-10 py-4 text-lg font-bold text-white shadow-glow transition hover:-translate-y-1 hover:shadow-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
               立即体验面试陪练
               <span className="ml-3 inline-block transition group-hover:translate-x-1">→</span>
-            </button>
-            <button className="shrink-0 whitespace-nowrap rounded-xl border border-slate-200 bg-white/80 px-9 py-4 text-lg font-bold text-slate-900 shadow-sm backdrop-blur-xl transition hover:-translate-y-1 hover:shadow-md">
-              <span className="mr-3 inline-flex h-5 w-5 items-center justify-center rounded-md border-2 border-blue-600 text-xs text-blue-600">▶</span>
+            </Link>
+            <Link
+              href="/about"
+              className="shrink-0 whitespace-nowrap rounded-button border border-slate-200 bg-white/80 px-9 py-4 text-lg font-bold text-slate-900 shadow-card backdrop-blur-xl transition hover:-translate-y-1 hover:shadow-card-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <span className="mr-3 inline-flex h-5 w-5 items-center justify-center rounded-md border-2 border-accent text-xs text-accent" aria-hidden="true">▶</span>
               观看产品演示
-            </button>
+            </Link>
           </div>
         </div>
 

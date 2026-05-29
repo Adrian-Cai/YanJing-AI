@@ -33,7 +33,7 @@ export default function ResumeScanVisual() {
       };
 
   return (
-    <div className="relative flex h-[520px] w-full items-center justify-center">
+    <div className="relative flex h-[520px] w-full items-center justify-center" aria-hidden="true">
       {/* 背景氛围 */}
       <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(79,70,229,0.10),transparent_62%)] blur-3xl" />
       <div className="absolute right-8 top-12 h-64 w-64 rounded-full bg-[#eef2ff]/70 blur-3xl" />

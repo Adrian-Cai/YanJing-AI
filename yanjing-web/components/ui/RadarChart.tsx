@@ -14,7 +14,8 @@ export function RadarChart() {
   ];
 
   return (
-    <svg viewBox="0 0 200 128" className="mt-1 h-[82px] w-full" data-testid="radar-chart">
+    <svg viewBox="0 0 200 128" className="mt-1 h-[82px] w-full" role="img" aria-label="能力维度雷达图" data-testid="radar-chart">
+      <title>能力维度雷达图：表达能力、逻辑思维、专业知识、应变能力、抗压能力</title>
       <polygon points="102,16 156,48 137,112 68,112 48,48" fill="none" stroke="#D9E2F7" strokeWidth="1" />
       <polygon points="102,38 134,57 122,94 84,94 72,57" fill="none" stroke="#D9E2F7" strokeWidth="1" />
       <polygon points="102,60 115,69 110,82 95,82 90,69" fill="none" stroke="#D9E2F7" strokeWidth="1" />
