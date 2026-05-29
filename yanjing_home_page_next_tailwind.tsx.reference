@@ -23,7 +23,7 @@ type MenuItem = { label: string; active?: boolean; icon: IconName };
 type FeatureItem = { title: string; desc: string; color: IconColor; icon: IconName };
 type StatItem = { value: string; label: string; icon: IconName };
 
-const ROBOT_ASSET_SRC = "/assets/home/hero-robot.webp";
+const ROBOT_ASSET_SRC = "./public/robot.png";
 
 const navItems = ["首页", "核心功能", "产品优势", "使用场景", "定价", "关于我们"];
 
@@ -65,7 +65,7 @@ export const yanjingHomeSmokeTests = [
   { name: "stats bar has four metrics", pass: stats.length === 4 },
   { name: "advantages section has five cards", pass: advantages.length === 5 },
   { name: "icon fields are strings", pass: [...mockMenus, ...mockFeatures, ...stats, ...advantages].every((item) => typeof item.icon === "string") },
-  { name: "robot asset uses a local public path", pass: ROBOT_ASSET_SRC.startsWith("/assets/") && !ROBOT_ASSET_SRC.startsWith("http") },
+  { name: "robot asset uses a local public path", pass: ROBOT_ASSET_SRC.startsWith("./public/") && !ROBOT_ASSET_SRC.startsWith("http") },
   { name: "does not import next/image", pass: true },
   { name: "floating cards are compact", pass: true },
   { name: "floating cards have no perspective transform", pass: true },
