@@ -163,37 +163,11 @@ function ResumeDemoCard() {
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-[#e1e9ff] bg-white/60 p-6 shadow-[0_20px_40px_-10px_rgba(99,102,241,0.05)] backdrop-blur-xl">
-      {/* Horizontal Scanning Beam */}
-      <motion.div
-        className="absolute left-0 right-0 h-[2px] z-10 bg-gradient-to-r from-transparent via-[#4f46e5]/50 to-transparent shadow-[0_0_15px_rgba(79,70,229,0.4)]"
-        animate={reduceMotion ? { x: 0 } : { x: ["-100%", "100%"] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Magnifying Glass */}
-      <motion.div
-        className="pointer-events-none absolute left-0 top-0 z-20 h-24 w-24"
-        animate={
-          reduceMotion
-            ? { x: 0, y: 0 }
-            : { x: ["0%", "70%"], y: ["0%", "35%"] }
-        }
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="relative h-full w-full">
-          <div className="absolute inset-0 rounded-full border-4 border-[#4f46e5] bg-white/10 shadow-[0_0_30px_rgba(79,70,229,0.3)] backdrop-blur-[3px]">
-            <div className="absolute inset-0 rounded-full bg-[#4f46e5]/5" />
-          </div>
-          <SearchLgIcon className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 text-[#4f46e5]" />
-          <div className="absolute left-[72px] top-[72px] h-2.5 w-10 origin-left rotate-45 rounded-full bg-[#4f46e5]" />
-        </div>
-      </motion.div>
-
       {/* Resume Content */}
       <header className="mb-4">
-        <h3 className="text-lg font-black text-[#4f46e5]">清衡</h3>
+        <h3 className="text-lg font-black text-[#4f46e5]">李华</h3>
         <div className="mt-1 flex gap-4 text-sm text-slate-500">
-          <span>qingheng@email.com</span>
+          <span>lihua@email.com</span>
           <span>138-0000-0000</span>
         </div>
         <p className="mt-1 text-sm font-semibold text-[#4f46e5]/80">高级产品经理</p>
@@ -215,6 +189,16 @@ function ResumeDemoCard() {
           <li>PDF 解析与问题生成工具开发</li>
         </ul>
       </section>
+
+      {/* Vertical scanning line */}
+      <motion.div
+        className="absolute left-0 right-0 h-[2px] z-10 bg-gradient-to-r from-transparent via-[#4f46e5]/50 to-transparent shadow-[0_0_15px_rgba(79,70,229,0.4)]"
+        animate={reduceMotion ? { y: 0 } : { y: ["-10%", "100%"] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Bottom gradient glow */}
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#4f46e5]/10 to-transparent pointer-events-none" />
 
       <div className="mt-6 h-1 rounded-full bg-gradient-to-r from-[#93c5fd] via-[#818cf8] to-[#a78bfa]" />
     </div>
@@ -240,14 +224,5 @@ function AnalysisInsightCard({
         <p className="mt-1 text-sm leading-relaxed text-slate-500">{desc}</p>
       </div>
     </div>
-  );
-}
-
-function SearchLgIcon({ className = "" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none">
-      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-      <path d="M16 16l4.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
   );
 }
