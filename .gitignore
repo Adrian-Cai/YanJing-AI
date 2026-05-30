@@ -29,6 +29,7 @@ Thumbs.db
 # Docs specs (keep tracked)
 docs/superpowers/specs/
 docs/superpowers/plans/
+docs/*
 
 # Old project directories (can be manually removed)
 

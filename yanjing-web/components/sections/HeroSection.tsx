@@ -6,9 +6,14 @@
  */
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { MiniIcon } from "@/components/ui/Icons";
-import { DeviceMockup } from "@/components/ui/DeviceMockup";
 import { stats } from "@/data";
+
+const DeviceMockup = dynamic(
+  () => import("@/components/ui/DeviceMockup").then(mod => ({ default: mod.DeviceMockup })),
+  { ssr: false }
+);
 
 export function HeroSection() {
   return (

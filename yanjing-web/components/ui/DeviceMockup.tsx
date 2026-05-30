@@ -1,66 +1,15 @@
 /**
  * 设备展示组件
  * 模拟应用界面的3D展示效果
- * 包含：侧边栏、欢迎面板、简历扫描演示、浮动卡片
+ * 包含：侧边栏、欢迎面板、功能卡片、浮动卡片
  */
 
-"use client";
-
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
-import { IconPath } from "./Icons";
+import { MiniIcon, IconPath } from "./Icons";
 import { VoiceBars } from "./VoiceBars";
 import { RobotAsset } from "./Robot";
 import { RadarChart } from "./RadarChart";
-import { mockMenus } from "@/data";
-
-/**
- * 简历扫描演示区域
- * 显示简历内容并带有自上而下的扫描线动画
- */
-function ResumeScanSection() {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div className="relative flex-1 overflow-hidden rounded-[20px] border border-white/70 bg-white/58 p-5 shadow-[0_16px_36px_rgba(91,116,203,0.10)] backdrop-blur-xl" data-testid="resume-scan-section">
-      {/* 简历内容 */}
-      <header className="mb-3">
-        <h3 className="text-base font-semibold text-slate-900">李华</h3>
-        <div className="text-[11px] text-slate-500 flex gap-3 mt-1">
-          <span>lihua@email.com</span>
-          <span>138-0000-0000</span>
-        </div>
-        <p className="text-[11px] font-medium text-blue-600 mt-1">高级产品经理</p>
-      </header>
-
-      <section className="mb-3">
-        <h4 className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide">工作经历</h4>
-        <ul className="list-disc list-inside text-[11px] text-slate-600 mt-1.5 space-y-0.5">
-          <li>2023.01 – 2024.03 某科技公司 – 产品经理</li>
-          <li>面试官数据分析与问答优化</li>
-        </ul>
-      </section>
-
-      <section>
-        <h4 className="text-[10px] font-semibold text-slate-400 uppercase tracking-wide">项目经历</h4>
-        <ul className="list-disc list-inside text-[11px] text-slate-600 mt-1.5 space-y-0.5">
-          <li>面试智能分析系统 – 数据可视化模块</li>
-          <li>PDF 解析与问题生成工具开发</li>
-        </ul>
-      </section>
-
-      {/* 扫描线动画 */}
-      <motion.div
-        className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-400/60 to-transparent shadow-[0_0_12px_rgba(59,130,246,0.4)]"
-        animate={reduceMotion ? { y: 0 } : { y: ["-10%", "100%"] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* 底部发光 */}
-      <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-blue-500/10 to-transparent pointer-events-none" />
-    </div>
-  );
-}
+import { mockMenus, mockFeatures } from "@/data";
 
 export function DeviceMockup() {
   return (
@@ -120,8 +69,18 @@ export function DeviceMockup() {
                 <RobotAsset />
               </div>
 
-              {/* 简历扫描演示 */}
-              <ResumeScanSection />
+              {/* 功能卡片网格 */}
+              <div className="grid flex-1 grid-cols-2 gap-4" data-testid="feature-grid">
+                {mockFeatures.map((item) => (
+                  <div key={item.title} className="flex items-center gap-4 rounded-[20px] border border-white/70 bg-white/58 p-5 shadow-[0_16px_36px_rgba(91,116,203,0.10)] backdrop-blur-xl">
+                    <MiniIcon type={item.icon} color={item.color} />
+                    <div>
+                      <p className="text-base font-bold text-slate-900">{item.title}</p>
+                      <p className="mt-1 text-xs font-medium text-slate-500">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

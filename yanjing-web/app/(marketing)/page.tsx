@@ -5,8 +5,13 @@
  * 组合所有页面区块组件
  */
 
+import dynamic from 'next/dynamic';
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AdvantagesSection } from "@/components/sections/AdvantagesSection";
+
+const AdvantagesSection = dynamic(
+  () => import("@/components/sections/AdvantagesSection").then(mod => ({ default: mod.AdvantagesSection })),
+  { ssr: false }
+);
 
 export default function YanJingHomePage() {
   return (
