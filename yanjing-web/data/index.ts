@@ -25,8 +25,8 @@ export const mockMenus: MenuItem[] = [
 export const mockFeatures: FeatureItem[] = [
   { title: "模拟面试", desc: "真实场景多轮问答", color: "blue", icon: "message" },
   { title: "简历解析", desc: "AI 分析履历匹配度", color: "purple", icon: "doc" },
-  { title: "能力评估", desc: "多维度智能评分", color: "green", icon: "shield" },
-  { title: "报告生成", desc: "个性化改进建议", color: "orange", icon: "briefcase" },
+  { title: "能力评估", desc: "多维度智能评分", color: "green", icon: "chart" },
+  { title: "报告生成", desc: "个性化改进建议", color: "orange", icon: "note" },
 ];
 
 /** 统计数据 */
