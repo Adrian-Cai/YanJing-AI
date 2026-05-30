@@ -6,6 +6,7 @@ import ResumeScanVisual from "@/components/marketing/ResumeScanVisual";
 import { BackgroundAtmosphere } from "@/components/marketing/about/BackgroundAtmosphere";
 import { TimelineItem } from "@/components/marketing/about/TimelineItem";
 import { SearchTinyIcon, ArrowRightIcon, SparkTinyIcon, LightbulbIcon, AnalyticsIcon, PsychologyIcon } from "@/components/marketing/about/icons";
+import InterviewFlowStrip from "@/components/marketing/InterviewFlowStrip";
 
 export default function AboutPage() {
   return (
@@ -59,25 +60,30 @@ export default function AboutPage() {
               分析表达漏洞，助你优化表达呈现
             </p>
 
-            <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:gap-12">
+            <InterviewFlowStrip />
+
+            <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:items-stretch">
               {/* Left: Resume Demo with Scanning */}
-              <div className="flex-1">
+              <div className="h-full min-h-[440px]">
                 <ResumeDemoCard />
               </div>
 
               {/* Right: Analysis Cards */}
-              <div className="flex flex-1 flex-col gap-4">
+              <div className="grid h-full grid-rows-3 gap-6">
                 <AnalysisInsightCard
+                  className="h-full"
                   icon={<LightbulbIcon />}
                   title="关键词优化"
                   desc="识别到项目描述中缺乏核心技术关键字，建议增加相关协议与架构词汇以通过初筛。"
                 />
                 <AnalysisInsightCard
+                  className="h-full"
                   icon={<AnalyticsIcon />}
                   title="量化成果数据"
                   desc="成果描述过于模糊。建议使用 STAR 法则，补充具体提升的百分比或减少的响应时间。"
                 />
                 <AnalysisInsightCard
+                  className="h-full"
                   icon={<PsychologyIcon />}
                   title="自我评价增强"
                   desc="AI 建议根据目标岗位突出高并发场景下处理经验，优化面试回答的可信度与条理性。"
@@ -162,13 +168,13 @@ function ResumeDemoCard() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative overflow-hidden rounded-card-xl border border-[#e1e9ff] bg-white/58 p-8 shadow-card backdrop-blur-xl">
+    <div className="relative h-full overflow-hidden rounded-card-xl border border-[#e1e9ff] bg-white/58 p-8 shadow-card backdrop-blur-xl">
       {/* 简历内容 */}
       <div className="relative z-10">
         <div className="mb-6">
-          <h3 className="text-lg font-semibold text-[#4f46e5]">李华</h3>
+          <h3 className="text-lg font-semibold text-[#4f46e5]">清衡</h3>
           <div className="mt-3 flex gap-5 text-sm text-slate-500">
-            <span>lihua@email.com</span>
+            <span>qingheng@email.com</span>
             <span>138-0000-0000</span>
           </div>
           <p className="mt-2 text-sm font-medium text-[#4f46e5]">高级产品经理</p>
@@ -227,13 +233,15 @@ function AnalysisInsightCard({
   icon,
   title,
   desc,
+  className,
 }: {
   icon: React.ReactNode;
   title: string;
   desc: string;
+  className?: string;
 }) {
   return (
-    <div className="flex gap-4 rounded-xl border border-blue-100 bg-white/72 p-5 shadow-[0_4px_12px_rgba(99,102,241,0.06)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.02]">
+    <div className={`flex h-full items-center gap-4 rounded-xl border border-blue-100 bg-white/72 p-5 shadow-[0_4px_12px_rgba(99,102,241,0.06)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.02] ${className ?? ""}`}>
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ede9fe]">
         {icon}
       </div>
